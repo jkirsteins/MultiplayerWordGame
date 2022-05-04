@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E7341BE82822DC2E00AFF116 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7341BE72822DC2E00AFF116 /* GameKit.framework */; };
+		E7341BEA2822DC9800AFF116 /* AppRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7341BE92822DC9800AFF116 /* AppRoot.swift */; };
+		E7341BEB2822DC9800AFF116 /* AppRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7341BE92822DC9800AFF116 /* AppRoot.swift */; };
 		E7DDE1FB2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FC2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FD2822CFAB0033B3A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */; };
@@ -19,9 +22,14 @@
 		E7DDE2112822D1660033B3A1 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE20F2822D1660033B3A1 /* Tile.swift */; };
 		E7DDE2132822D1800033B3A1 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE2122822D1800033B3A1 /* Board.swift */; };
 		E7DDE2142822D1800033B3A1 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE2122822D1800033B3A1 /* Board.swift */; };
+		E7DDE2162822D5C50033B3A1 /* GKAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE2152822D5C50033B3A1 /* GKAuthentication.swift */; };
+		E7DDE2172822D5C50033B3A1 /* GKAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE2152822D5C50033B3A1 /* GKAuthentication.swift */; };
+		E7DDE21A2822D7E50033B3A1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DDE2192822D7E50033B3A1 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E7341BE72822DC2E00AFF116 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		E7341BE92822DC9800AFF116 /* AppRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoot.swift; sourceTree = "<group>"; };
 		E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerWordGameApp.swift; sourceTree = "<group>"; };
 		E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E7DDE1ED2822CFAB0033B3A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,6 +39,9 @@
 		E7DDE20A2822D1500033B3A1 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		E7DDE20F2822D1660033B3A1 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		E7DDE2122822D1800033B3A1 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		E7DDE2152822D5C50033B3A1 /* GKAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKAuthentication.swift; sourceTree = "<group>"; };
+		E7DDE2192822D7E50033B3A1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
+		E7DDE21B2822D8270033B3A1 /* MultiplayerWordGame (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MultiplayerWordGame (iOS).entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7DDE21A2822D7E50033B3A1 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7341BE82822DC2E00AFF116 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,9 +67,11 @@
 		E7DDE1E52822CFA90033B3A1 = {
 			isa = PBXGroup;
 			children = (
+				E7DDE21B2822D8270033B3A1 /* MultiplayerWordGame (iOS).entitlements */,
 				E7DDE1EA2822CFA90033B3A1 /* Shared */,
 				E7DDE1F92822CFAB0033B3A1 /* macOS */,
 				E7DDE1F32822CFAB0033B3A1 /* Products */,
+				E7DDE2182822D7E50033B3A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +84,8 @@
 				E7DDE1ED2822CFAB0033B3A1 /* Assets.xcassets */,
 				E7DDE20F2822D1660033B3A1 /* Tile.swift */,
 				E7DDE2122822D1800033B3A1 /* Board.swift */,
+				E7DDE2152822D5C50033B3A1 /* GKAuthentication.swift */,
+				E7341BE92822DC9800AFF116 /* AppRoot.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -88,6 +105,15 @@
 				E7DDE1FA2822CFAB0033B3A1 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		E7DDE2182822D7E50033B3A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7341BE72822DC2E00AFF116 /* GameKit.framework */,
+				E7DDE2192822D7E50033B3A1 /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +217,8 @@
 				E7DDE1FD2822CFAB0033B3A1 /* ContentView.swift in Sources */,
 				E7DDE1FB2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */,
 				E7DDE2132822D1800033B3A1 /* Board.swift in Sources */,
+				E7DDE2162822D5C50033B3A1 /* GKAuthentication.swift in Sources */,
+				E7341BEA2822DC9800AFF116 /* AppRoot.swift in Sources */,
 				E7DDE2102822D1660033B3A1 /* Tile.swift in Sources */,
 				E7DDE20D2822D1500033B3A1 /* ColorExtensions.swift in Sources */,
 			);
@@ -203,6 +231,8 @@
 				E7DDE1FE2822CFAB0033B3A1 /* ContentView.swift in Sources */,
 				E7DDE1FC2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */,
 				E7DDE2142822D1800033B3A1 /* Board.swift in Sources */,
+				E7DDE2172822D5C50033B3A1 /* GKAuthentication.swift in Sources */,
+				E7341BEB2822DC9800AFF116 /* AppRoot.swift in Sources */,
 				E7DDE2112822D1660033B3A1 /* Tile.swift in Sources */,
 				E7DDE20E2822D1500033B3A1 /* ColorExtensions.swift in Sources */,
 			);
@@ -327,6 +357,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "MultiplayerWordGame (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FN5YR78T7X;
@@ -335,6 +366,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -357,6 +389,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "MultiplayerWordGame (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FN5YR78T7X;
@@ -365,6 +398,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
