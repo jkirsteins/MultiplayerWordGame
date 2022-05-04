@@ -6,7 +6,8 @@ real app (available in non-playgrounds branches) */
 struct PlaygroundsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRoot()
+//            ContentView()
         }
     }
 }
