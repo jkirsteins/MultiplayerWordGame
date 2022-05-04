@@ -1,6 +1,10 @@
 import SwiftUI
 
-import SwiftUI
+#if os(macOS)
+fileprivate typealias NColor=NSColor
+#else
+fileprivate typealias NColor=UIColor
+#endif
 
 /// Helpers for Color to get the right colors for
 /// tiles or keyboard button colors.
@@ -52,11 +56,18 @@ extension Color {
         return Color(red: r, green: g, blue: b)
     }
     
-    var uiColor: UIColor { .init(self) }
+    fileprivate var uiColor: NColor { .init(self) }
     typealias RGBA = (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
     var rgba: RGBA? {
         var (r, g, b, a): RGBA = (0, 0, 0, 0)
+        
+        #if os(macOS)
+        let ciColor:CIColor = CIColor(color: uiColor)!
+
+        return (ciColor.red, ciColor.green, ciColor.blue, ciColor.alpha)
+        #else
         return uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) ? (r, g, b, a) : nil
+        #endif
     }
     var hexaRGB: String? {
         guard let (red, green, blue, _) = rgba else { return nil }

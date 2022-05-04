@@ -16,6 +16,8 @@ let package = Package(
         .iOSApplication(
             name: "Crossy Word",
             targets: ["AppModule"],
+            bundleIdentifier: "org.janiskirsteins.MultiplayerWordGame",
+            teamIdentifier: "FN5YR78T7X",
             displayVersion: "1.0",
             bundleVersion: "1",
             iconAssetName: "AppIcon",
