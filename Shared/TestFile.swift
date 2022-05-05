@@ -1,5 +1,7 @@
 import SwiftUI
 
+fileprivate let MAX_SIDE = CGFloat(25)
+
 struct TDButtonModifier: ViewModifier {
     let model: TileModel
     let isCurrent: Bool
@@ -81,7 +83,7 @@ struct TDButtonStyle: ButtonStyle {
                     .frame(
                         idealWidth: config.idealTileSize.width, 
                         idealHeight: config.idealTileSize.height - shadowHeight, 
-                        maxHeight: 50 - shadowHeight)
+                        maxHeight: MAX_SIDE - shadowHeight)
             }
             
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
@@ -89,7 +91,7 @@ struct TDButtonStyle: ButtonStyle {
                 .frame(
                     idealWidth: config.idealTileSize.width, 
                     idealHeight: config.idealTileSize.height - shadowHeight, 
-                    maxHeight: 50 - shadowHeight)
+                    maxHeight: MAX_SIDE - shadowHeight)
                 .aspectRatio(1, contentMode: .fit)
             
             VStack {
@@ -145,7 +147,7 @@ struct TDEmptyButtonStyle: ButtonStyle {
                 .frame(
                     idealWidth: config.idealTileSize.width, 
                     idealHeight: config.idealTileSize.height, 
-                    maxHeight: 50)
+                    maxHeight: MAX_SIDE)
                 .aspectRatio(1, contentMode: .fit)
             
             VStack {
@@ -180,7 +182,7 @@ struct TDStartButtonStyle: ButtonStyle {
                 .frame(
                     idealWidth: config.idealTileSize.width, 
                     idealHeight: config.idealTileSize.height, 
-                    maxHeight: 50)
+                    maxHeight: MAX_SIDE)
                 .aspectRatio(1, contentMode: .fit)
             
             VStack {
@@ -215,15 +217,15 @@ struct TDRandomButtonStyle: ButtonStyle {
                 .frame(
                     idealWidth: config.idealTileSize.width, 
                     idealHeight: config.idealTileSize.height, 
-                    maxHeight: 50)
+                    maxHeight: MAX_SIDE)
                 .aspectRatio(1, contentMode: .fit)
             
             Text("?")
-                        .foregroundColor(color)
-                        .fontWeight(.bold)
-                        .font(.system(size: 100))
-                        .minimumScaleFactor(0.01)
-                        .padding(6)
+                .foregroundColor(color)
+                .fontWeight(.bold)
+                .font(.system(size: 100))
+                .minimumScaleFactor(0.01)
+                .padding(6)
         }
     }
 }
@@ -251,8 +253,8 @@ struct TDView: View {
         ZStack(alignment: .top) {
             TDButton(x: x, y: y)
                 .frame(
-                    minWidth: 50, idealWidth: config.idealTileSize.width, 
-                    minHeight: 50, idealHeight: config.idealTileSize.height)
+                    minWidth: MAX_SIDE, idealWidth: config.idealTileSize.width, 
+                    minHeight: MAX_SIDE, idealHeight: config.idealTileSize.height)
                 .aspectRatio(1, contentMode: .fit)
         }
     }
@@ -261,6 +263,10 @@ struct TDView: View {
 extension CGSize {
     func div(_ by: CGFloat) -> CGSize {
         return CGSize(width: self.width / by, height: self.height / by)
+    }
+    
+    func mul(_ by: CGFloat) -> CGSize {
+        return CGSize(width: self.width * by, height: self.height * by)
     }
     
     func dec(_ by: CGFloat) -> CGSize {
@@ -385,19 +391,19 @@ struct BoardModel {
         var currentRandom = [0, 0, 0, 0]
         
         self.board =  
-            (0..<rows).flatMap { y in
-                (0..<cols).map { x in
+        (0..<rows).flatMap { y in
+            (0..<cols).map { x in
                 
-                    let isBottom = y > midy
-                    let isLeft = x < midx
-                    let quadrant: Int
-                    switch(isBottom, isLeft) {
-                    case (false, false): quadrant = 0
-                    case (true, false): quadrant = 1
-                    case (false, true): quadrant = 2
-                    case (true, true): quadrant = 3
-                    } 
-                    
+                let isBottom = y > midy
+                let isLeft = x < midx
+                let quadrant: Int
+                switch(isBottom, isLeft) {
+                case (false, false): quadrant = 0
+                case (true, false): quadrant = 1
+                case (false, true): quadrant = 2
+                case (true, true): quadrant = 3
+                } 
+                
                 guard 
                     x != midx || y != midy
                 else {
@@ -438,7 +444,7 @@ struct BoardModel {
 }
 
 class GameState : ObservableObject {
-    @Published var board = BoardModel(9, 9)
+    @Published var board = BoardModel(5, 11)
     
     var rows: Int { board.rows }
     var cols: Int  { board.cols }
@@ -459,10 +465,24 @@ struct Game: View {
     var rows: Int { state.rows }
     let spacing = CGFloat(2)
     
+    @State var scale: CGFloat = 1.0
+    @State var isScaling = false
+    @State var referenceScale: CGFloat = 1.0
+    
+    var sce: CGFloat {
+        isScaling ? scale * referenceScale : referenceScale
+    }
+    
     var body: some View {
         GeometryReader { pr in 
             ScrollView([.horizontal, .vertical], showsIndicators: true) {
                 Rows()
+                    .scaleEffect(sce)
+                    .padding(.horizontal,
+                        (pr.size.width * sce - pr.size.width) / 2.0)
+                    .padding(.vertical,
+                             (pr.size.height * sce - pr.size.height) / 2.0)
+                    .border(.black, width: 2)
             }
             .environment(\.gridConfig, GridConfig(
                 spacing: spacing, 
@@ -472,6 +492,15 @@ struct Game: View {
             .environmentObject(state)
             .debugBorder(.purple)
         }
+        .simultaneousGesture(MagnificationGesture()
+                                .onChanged({ (scale) in
+            self.isScaling = true
+            self.scale = scale
+        }).onEnded { scale in
+            self.isScaling = false
+            self.referenceScale *= scale 
+            self.scale = 1.0
+        })
         .environment(\.debug, false)
     }
 }
