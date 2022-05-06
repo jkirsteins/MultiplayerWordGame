@@ -31,7 +31,9 @@ class GameState : ObservableObject {
         let remaining = dispenser.remaining.dropFirst(toFetch)
         
         dispenser = LetterDispenser(letters: Array(remaining))
-        return PlayerHand(letters: hand.letters + fetched)
+        return PlayerHand(
+            id: hand.id, 
+            letters: hand.letters + fetched)
     }
     
     var rows: Int { board.rows }
@@ -57,6 +59,25 @@ class GameState : ObservableObject {
         self.existingChoiceStashed = nil
     }
     
+    func swapLetters(_ letters: [IdLetter], for hand: PlayerHand)
+    {
+        guard let handIx = self.hands.firstIndex(where: { 
+            $0 == hand 
+        }) else {
+            fatalError("Hand not found")
+        }
+        
+        let handRemaining = hand.letters.filter { letter in
+            !letters.contains(letter)
+        }
+        
+        self.dispenser = LetterDispenser(
+            letters: self.dispenser.remaining + letters)
+        
+        self.hands[handIx] = refill(PlayerHand(
+            id: hand.id,
+            letters: handRemaining))
+    }
     
     func tryStart(x: Int, y: Int) {
         let existing = self.tileAt(x: x, y: y)
@@ -75,8 +96,6 @@ class GameState : ObservableObject {
                 x: x, 
                 y: y)
         }
-        
-        
     }
 }
 

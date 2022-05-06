@@ -4,9 +4,9 @@ typealias LetterFrequency=(points: Int, count: Int)
 typealias LetterFrequencies=[String:LetterFrequency]
 
 struct LetterDispenser {
-    let remaining: [Letter] 
+    let remaining: [IdLetter] 
     
-    static func initialize(_ loc: Locale) -> [Letter ] {
+    static func initialize(_ loc: Locale) -> [IdLetter] {
         switch(loc) {
         case .en_US:
             let freqs: LetterFrequencies = 
@@ -60,7 +60,7 @@ struct LetterDispenser {
                 }
                 return result
             }
-            return result
+            return result.map { $0.newUnique() }
             //    3 points: B ×2, C ×2, M ×2, P ×2
             //    4 points: F ×2, H ×2, V ×2, W ×2, Y ×2
             //    5 points: K ×1
@@ -71,7 +71,7 @@ struct LetterDispenser {
         } 
     }
     
-    init(letters: [Letter]) {
+    init(letters: [IdLetter]) {
         self.remaining = letters
     }
     
@@ -93,9 +93,9 @@ struct LetterDispenserTest: View {
             VStack {
                 Text("Default for .en_US")
                 LazyVGrid(columns: columns, spacing: 4) {
-                    ForEach(l.remaining.map { ($0,UUID()) }, id: \.1) {
+                    ForEach(l.remaining) {
                         l in  
-                        Text("\(l.0.value) (\(l.0.points) pts)")
+                        Text("\(l.letter.value) (\(l.letter.points) pts)")
                     }
                 }
             }.padding()
@@ -106,9 +106,9 @@ struct LetterDispenserTest: View {
             VStack {
                 Text("Sorted for .en_US")
                 LazyVGrid(columns: columns, spacing: 4) {
-                    ForEach(l.remaining.sorted(by: { $0.value < $1.value }).map { ($0,UUID()) }, id: \.1) {
+                    ForEach(l.remaining.sorted()) {
                         l in  
-                        Text("\(l.0.value) (\(l.0.points) pts)")
+                        Text("\(l.letter.value) (\(l.letter.points) pts)")
                     }
                 }
             }.padding()

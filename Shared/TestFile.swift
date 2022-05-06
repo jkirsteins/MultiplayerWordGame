@@ -486,14 +486,17 @@ struct BoardModel {
     }
 }
 
-struct PlayerHand {
-    let letters: [Letter]
+struct PlayerHand : Equatable, Identifiable {
+    let id: UUID
+    let letters: [IdLetter]
     
     init() {
+        self.id = UUID()
         self.letters = []
     }
     
-    init(letters: [Letter]) {
+    init(id: UUID, letters: [IdLetter]) {
+        self.id = id
         self.letters = letters
     }
 }

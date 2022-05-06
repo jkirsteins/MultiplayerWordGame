@@ -9,6 +9,7 @@ struct Game: View {
     
     @State var scale: CGFloat = 1.0
     @State var isScaling = false
+    @State var isSwapping: [IdLetter]? = nil
     @State var referenceScale: CGFloat = 1.0
     
     var sce: CGFloat {
@@ -29,17 +30,59 @@ struct Game: View {
                 
                 Text(verbatim: "Remaining: \(state.dispenser.remaining.count)")
                 
+                if isSwapping != nil {
+                    Text("Please select the letters you wish to swap.")
+                }
+                
                 HStack {
-                    ForEach(state.hands[0].letters.map { ($0, UUID()) }, id: \.1) {
-                        tuple in 
+                    ForEach(state.hands[0].letters.sorted()) {
+                        l in 
                         
-                        Button("\(tuple.0.value)") {
-                            print("\(tuple.0.value)")
+                        Button("\(l.letter.value)") {
+                            if var isSwapping = isSwapping {
+                                if let ix = isSwapping.firstIndex(of: l) {
+                                    isSwapping.remove(at: ix)
+                                } else {
+                                    isSwapping.append(l)
+                                }
+                                self.isSwapping = isSwapping
+                            } else {
+                                print("Placing \(l.letter.value)")
+                            }
                         }
-                            .frame(
-                                minWidth: 30,
-                                minHeight: 30)
-                            .border(.gray)
+                        .frame(
+                            minWidth: 30,
+                            minHeight: 30)
+                        .border(isSwapping?.contains(l) == true ? .red : .gray)
+                    }
+                }
+                
+                HStack {
+                    if let isSwapping = isSwapping {
+                        VStack(spacing: 8) {
+                            Button("Apply swap") {
+                                self.state.swapLetters(isSwapping, for: self.state.hands[0])
+                                self.isSwapping = nil
+                            }.disabled(isSwapping.isEmpty)
+                            
+                            Button("Cancel swap") {
+                                self.isSwapping = nil
+                            }
+                            
+                            Button("Invert swap") {
+                                self.isSwapping = self.state.hands[0].letters.filter({ letter in
+                                    !isSwapping.contains(letter)
+                                })
+                            }
+                        }
+                    } else {
+                        Button("Swap") {
+                            self.isSwapping = self.state.hands[0].letters
+                        }
+                        
+                        Button("Submit") {
+                            
+                        }
                     }
                 }
                 
