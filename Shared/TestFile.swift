@@ -8,8 +8,11 @@ struct TDButtonModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         switch(model) {
+            case .choosing(_):
+            content.buttonStyle(TDButtonStyle(isCurrent: false))
         case .active:
-            content.buttonStyle(TDButtonStyle(isCurrent: isCurrent))
+//            content.buttonStyle(TDButtonStyle(isCurrent: isCurrent))
+            content.buttonStyle(TDEmptyButtonStyle())
         case .empty:
             content.buttonStyle(TDEmptyButtonStyle())
         case .start:
@@ -51,6 +54,44 @@ struct TDButton: View {
         }
         .modifier(
             TDButtonModifier(model: model, isCurrent: isCurrent)
+        )
+    }
+}
+
+struct TDStartButton: View {
+    @EnvironmentObject var state: GameState
+    
+    let x: Int 
+    let y: Int 
+    
+    var model: TileModel {
+        state.tileAt(x: x, y: y)
+    }
+    
+    init(x: Int, y: Int) {
+        self.x = x 
+        self.y = y
+    }
+    
+    var title: String {
+        guard case let .choosing(direction) = model else {
+            return ""
+        }
+        
+        switch(direction) {
+        case .down: return "V"
+        case .right: return ">"
+        case .left: return "<"
+        case .up: return "^"
+        }
+    }
+    
+    var body: some View {
+        Button(title) {
+            self.state.tryStart(x: x, y: y)
+        }
+        .modifier(
+            TDButtonModifier(model: model, isCurrent: false)
         )
     }
 }
@@ -249,13 +290,22 @@ struct TDView: View {
         12.5
     }
     
+    var model: TileModel {
+        gameState.tileAt(x: x, y: y)
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
+            switch(model) {
+                case .empty, .choosing(_), .start, .random:
+                TDStartButton(x: x, y: y)
+                default:
             TDButton(x: x, y: y)
                 .frame(
                     minWidth: MAX_SIDE, idealWidth: config.idealTileSize.width, 
                     minHeight: MAX_SIDE, idealHeight: config.idealTileSize.height)
                 .aspectRatio(1, contentMode: .fit)
+            }
         }
     }
 }
@@ -356,13 +406,6 @@ extension EnvironmentValues {
     }
 }
 
-enum TileModel {
-    case empty
-    case random
-    case active
-    case start
-}
-
 struct BoardModel {
     let board: [TileModel]
     
@@ -443,65 +486,15 @@ struct BoardModel {
     }
 }
 
-class GameState : ObservableObject {
-    @Published var board = BoardModel(5, 11)
+struct PlayerHand {
+    let letters: [Letter]
     
-    var rows: Int { board.rows }
-    var cols: Int  { board.cols }
-    
-    func tileAt(x: Int, y: Int) -> TileModel {
-        self.board.tileAt(x: x, y: y)
+    init() {
+        self.letters = []
     }
     
-    func setType(_ model: TileModel, x: Int, y: Int) {
-        self.board = self.board.changed(model, x: x, y: y)
-    }
-}
-
-struct Game: View {
-    @StateObject var state = GameState()
-    
-    var cols: Int { state.cols } 
-    var rows: Int { state.rows }
-    let spacing = CGFloat(2)
-    
-    @State var scale: CGFloat = 1.0
-    @State var isScaling = false
-    @State var referenceScale: CGFloat = 1.0
-    
-    var sce: CGFloat {
-        isScaling ? scale * referenceScale : referenceScale
-    }
-    
-    var body: some View {
-        GeometryReader { pr in 
-            ScrollView([.horizontal, .vertical], showsIndicators: true) {
-                Rows()
-                    .scaleEffect(sce)
-                    .padding(.horizontal,
-                        (pr.size.width * sce - pr.size.width) / 2.0)
-                    .padding(.vertical,
-                             (pr.size.height * sce - pr.size.height) / 2.0)
-                    .border(.black, width: 2)
-            }
-            .environment(\.gridConfig, GridConfig(
-                spacing: spacing, 
-                idealTileSize: pr.size.div(CGFloat(cols)).dec(spacing).minsq(), 
-                rows: rows, 
-                cols: cols))
-            .environmentObject(state)
-            .debugBorder(.purple)
-        }
-        .simultaneousGesture(MagnificationGesture()
-                                .onChanged({ (scale) in
-            self.isScaling = true
-            self.scale = scale
-        }).onEnded { scale in
-            self.isScaling = false
-            self.referenceScale *= scale 
-            self.scale = 1.0
-        })
-        .environment(\.debug, false)
+    init(letters: [Letter]) {
+        self.letters = letters
     }
 }
 

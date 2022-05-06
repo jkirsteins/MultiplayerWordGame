@@ -9,8 +9,9 @@ import SwiftUI
 
 struct AppRoot : View {
     var body: some View {
-        GKAuthentication {
-            ContentView()
-        }
+        Game()
+//        GKAuthentication {
+//            ContentView()
+//        }
     }
 }

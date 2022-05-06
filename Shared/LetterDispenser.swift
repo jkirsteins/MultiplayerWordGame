@@ -71,6 +71,10 @@ struct LetterDispenser {
         } 
     }
     
+    init(letters: [Letter]) {
+        self.remaining = letters
+    }
+    
     init(locale: Locale = .en_US) {
         self.remaining = Self.initialize(locale).shuffled()
     }
@@ -109,7 +113,6 @@ struct LetterDispenserTest: View {
                 }
             }.padding()
         }
-        
     }
 }
 
