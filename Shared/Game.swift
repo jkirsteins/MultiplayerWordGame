@@ -18,15 +18,17 @@ struct Game: View {
     
     var body: some View {
         GeometryReader { pr in 
-            ScrollView([.horizontal, .vertical], showsIndicators: true) {
-                
-                Rows()
-                    .scaleEffect(sce)
-                    .padding(.horizontal,
-                             (pr.size.width * sce - pr.size.width) / 2.0)
-                    .padding(.vertical,
-                             (pr.size.height * sce - pr.size.height) / 2.0)
-                    .border(.black, width: 2)
+            VStack {
+                ScrollView([.horizontal, .vertical], showsIndicators: true) {
+                    
+                    Rows()
+//                        .scaleEffect(sce)
+//                        .padding(.horizontal,
+//                                 (pr.size.width * sce - pr.size.width) / 2.0)
+//                        .padding(.vertical,
+//                                 (pr.size.height * sce - pr.size.height) / 2.0)
+                        .border(.black, width: 2)
+                }
                 
                 Text(verbatim: "Remaining: \(state.dispenser.remaining.count)")
                 
@@ -38,7 +40,7 @@ struct Game: View {
                     ForEach(state.hands[0].letters.sorted()) {
                         l in 
                         
-                        Button("\(l.letter.value)") {
+                        TileInHand(letter: l.letter, highlight: isSwapping?.contains(l) == true) {
                             if var isSwapping = isSwapping {
                                 if let ix = isSwapping.firstIndex(of: l) {
                                     isSwapping.remove(at: ix)
@@ -53,7 +55,6 @@ struct Game: View {
                         .frame(
                             minWidth: 30,
                             minHeight: 30)
-                        .border(isSwapping?.contains(l) == true ? .red : .gray)
                     }
                 }
                 
@@ -77,7 +78,7 @@ struct Game: View {
                         }
                     } else {
                         Button("Swap") {
-                            self.isSwapping = self.state.hands[0].letters
+                            self.isSwapping = []
                         }
                         
                         Button("Submit") {
@@ -85,7 +86,6 @@ struct Game: View {
                         }
                     }
                 }
-                
             }
             .environment(\.gridConfig, GridConfig(
                 spacing: spacing, 
@@ -95,15 +95,15 @@ struct Game: View {
             .environmentObject(state)
             .debugBorder(.purple)
         }
-        .simultaneousGesture(MagnificationGesture()
-                                .onChanged({ (scale) in
-            self.isScaling = true
-            self.scale = scale
-        }).onEnded { scale in
-            self.isScaling = false
-            self.referenceScale *= scale 
-            self.scale = 1.0
-        })
+//        .simultaneousGesture(MagnificationGesture()
+//                                .onChanged({ (scale) in
+//            self.isScaling = true
+//            self.scale = scale
+//        }).onEnded { scale in
+//            self.isScaling = false
+//            self.referenceScale *= scale 
+//            self.scale = 1.0
+//        })
         .environment(\.debug, false)
     }
 }

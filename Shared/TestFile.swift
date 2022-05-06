@@ -1,6 +1,6 @@
 import SwiftUI
 
-fileprivate let MAX_SIDE = CGFloat(25)
+fileprivate let MAX_SIDE = CGFloat(50 )
 
 struct TDButtonModifier: ViewModifier {
     let model: TileModel
@@ -455,7 +455,8 @@ struct BoardModel {
                 
                 if (abs(midx - x) > cutOffX || abs(midy - y) > cutOffY) && drand48() < (0.04 * Double(minDesired - currentRandom[quadrant])) {
                     currentRandom[quadrant] += 1
-                    return TileModel.random
+                    return .empty
+                    //return TileModel.random
                 } else {
                     return TileModel.empty
                 }

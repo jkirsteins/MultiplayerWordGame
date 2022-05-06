@@ -9,7 +9,7 @@ class GameState : ObservableObject {
     init(locale: Locale = .en_US) {
         var dispenser = LetterDispenser(locale: locale)
         
-        self.board = BoardModel(3, 3)
+        self.board = BoardModel(7, 7)
         
         self.hands = [
             Self.refill(PlayerHand(), &dispenser)
