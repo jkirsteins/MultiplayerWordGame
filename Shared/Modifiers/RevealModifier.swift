@@ -95,7 +95,7 @@ struct RevealModifierTestView: View {
         VStack(spacing: 24) {
             FlippableTileInHand(
                 letter: from, 
-                highlight: true, 
+                highlight: .selected, 
                 flipped: to,
                 flipCallback: {
                     to = nil

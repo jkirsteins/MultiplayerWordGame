@@ -81,8 +81,6 @@ struct TDStartButton: View {
         switch(direction) {
         case .down: return "V"
         case .right: return ">"
-        case .left: return "<"
-        case .up: return "^"
         }
     }
     

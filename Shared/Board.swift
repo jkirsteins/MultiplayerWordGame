@@ -50,16 +50,18 @@ struct Board : View {
         ForEach(0..<model.rows) { rowIx in
             ForEach(0..<model.cols) { colIx in
                 
+                let point = Point(x: colIx, y: rowIx)
+                
                 switch(colIx, rowIx) {
                 case (7, 7):
-                    TileStart()
+                    TileStart(point: point)
                 case (5, 1), (9, 1),
                     (1, 5), (5, 5),
                     (13, 5), (9, 5),
                     (1, 9), (5, 9),
                     (13, 9), (9, 9),
                     (5, 13), (9, 13):
-                    Tile3XL()
+                    Tile3XL(point: point)
                 case (3, 0), (11, 0),
                     (3, 14), (11, 14),
                     (6, 2), (7, 3), (8, 2),
@@ -72,18 +74,18 @@ struct Board : View {
                     (6, 6), (8, 8),
                     (6, 8), (8, 6)
                     :
-                    Tile2XL()
+                    Tile2XL(point: point)
                 case
                     (0, 0), (7, 0), (14, 0),
                     (0, 7), (14, 7),
                     (0, 14), (7, 14), (14, 14):
-                    Tile3XW()
+                    Tile3XW(point: point)
                 case (let a, let b) where a == b && a*b > 0:
-                    Tile2XW()
+                    Tile2XW(point: point)
                 case (let a, let b) where a == 14 - b && a*b > 0:
-                    Tile2XW()
+                    Tile2XW(point: point)
                 default:
-                    TileRegular()
+                    TileRegular(point: point)
                 }
             }
         }

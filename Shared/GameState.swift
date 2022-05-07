@@ -6,7 +6,9 @@ struct Point : Equatable {
 }
 
 struct Word : Equatable {
-    let letters: [Letter]
+    /// Identifiable letters instead of regular letters,
+    /// so we can map against the hand (and highlight)
+    let letters: [IdLetter]
 }
 
 typealias PlayerIndex = Int
@@ -25,7 +27,7 @@ class GameState : ObservableObject {
     /// Basic state machine of the current turn
     enum GameStateOption : Equatable, CustomDebugStringConvertible {
         case idle(PlayerIndex) 
-        case choosingDirection(PlayerIndex, WordDirection)
+//        case choosingDirection(PlayerIndex, WordDirection)
         case placing(PlayerIndex, Point, WordDirection, Word)
         case initializingSwap(PlayerIndex, LetterChoice)
         case animatingSwap(PlayerIndex, LetterSwap)
@@ -34,10 +36,10 @@ class GameState : ObservableObject {
             switch(self) {
                 case .idle(let ix):
                 return "Idle (for \(ix))"
-            case .choosingDirection(let ix, _):
-                return "Choosing direction (for \(ix))"
-            case .placing(let ix, _, _, _):
-                return "Placing word (for \(ix))"
+//            case .choosingDirection(let ix, _):
+//                return "Choosing direction (for \(ix))"
+            case .placing(let ix, _, let dir, _):
+                return "Placing word \(dir) (for \(ix))"
             case .initializingSwap(let ix, _):
                 return "Choosing swap (for \(ix))"
             case .animatingSwap(let ix, _):
@@ -77,8 +79,8 @@ class GameState : ObservableObject {
             switch(self) {
                 case .idle(let ix): 
                 return ix 
-                case .choosingDirection(let ix, _): 
-                return ix 
+//                case .choosingDirection(let ix, _): 
+//                return ix 
                 case .placing(let ix, _, _, _): 
                 return ix 
                 case .initializingSwap(

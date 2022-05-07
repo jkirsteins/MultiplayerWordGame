@@ -1,17 +1,14 @@
 import SwiftUI
 
 enum WordDirection : Equatable {
-    case up
+    case right
     case down 
-    case right 
-    case left
+    
     
     func rotate() -> WordDirection {
         switch(self) {
-            case .up: return .right
             case .right: return .down
-            case .down: return .left
-            case .left: return .up
+            case .down: return .right
         }
     }
 }

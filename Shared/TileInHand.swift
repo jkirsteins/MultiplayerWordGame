@@ -15,14 +15,25 @@ fileprivate struct TileInHandButtonStyle: ButtonStyle {
     
     let regularTextColor = Color(hex: 0x1f1b14)
     let regularColor = Color(hex: 0xf6d2aa)
-    let highlight: Bool
+    let highlight: TileHighlight?
     
     var textColor: Color {
-        highlight ? .white : regularTextColor
+        guard let _ = highlight else {
+            return regularTextColor
+        }
+        
+        return .white
     }
     
     var color: Color {
-        highlight ? .blue.lighter : regularColor
+        guard let highlight = highlight else {
+            return regularColor
+        }
+        
+        switch(highlight) {
+            case .selected: return .blue.lighter
+            case .placed: return .gray.lighter
+        }
     }
     
     func makeBody(configuration: Configuration) -> some View {
@@ -74,16 +85,16 @@ fileprivate struct TileInHandButtonStyle: ButtonStyle {
 
 struct TileInHand: View {
     let letter: Letter
-    let highlight: Bool
+    let highlight: TileHighlight?
     let action: ()->()
     
     init(letter: Letter, action: @escaping (()->()) = { }) {
         self.letter = letter 
-        self.highlight = false
+        self.highlight = nil
         self.action = action 
     }
     
-    init(letter: Letter, highlight: Bool, action: @escaping (()->()) = { }) {
+    init(letter: Letter, highlight: TileHighlight?, action: @escaping (()->()) = { }) {
         self.letter = letter 
         self.highlight = highlight
         self.action = action
@@ -126,7 +137,9 @@ struct TileInHand_Previews: PreviewProvider {
         VStack {
             TileInHand(letter: .init("A", points: 5))
             
-            TileInHand(letter: .init("A", points: 5), highlight: true)
+            TileInHand(letter: .init("A", points: 5), highlight: .selected)
+            
+            TileInHand(letter: .init("A", points: 5), highlight: .placed)
             
             HStack {
                 TileInHand(letter: .init("A", points: 5))

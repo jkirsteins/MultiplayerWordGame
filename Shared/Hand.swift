@@ -1,5 +1,10 @@
 import SwiftUI
 
+enum TileHighlight {
+    case selected
+    case placed
+}
+
 struct HandRow: View {
     
     @Environment(\.player)
@@ -20,6 +25,10 @@ struct HandRow: View {
         state.state.getSwap(for: player.index) ?? [:]
     }
     
+    var placedLetters: [IdLetter] {
+        state.getPlaced(for: player.index) ?? []
+    }
+    
     /// Returns true if we are picking letters for swap
     var isChoosingSwap: Bool {
         switch(state.state) {
@@ -29,8 +38,16 @@ struct HandRow: View {
         }
     }
     
-    func shouldHighlight(_ l: IdLetter) -> Bool {
-        swapChoice.contains(l) || swap.keys.contains(l)
+    func shouldHighlight(_ l: IdLetter) -> TileHighlight? {
+        if swapChoice.contains(l) || swap.keys.contains(l) {
+            return .selected 
+        }
+        
+        if placedLetters.contains(l) == true {
+            return .placed
+        }
+        
+        return nil
     }
     
     func flipLetter(for letter: IdLetter) -> Letter? {
@@ -57,8 +74,10 @@ struct HandRow: View {
                             state.toggleSwapChoice(
                                 for: player.index, 
                                    letter: l)
-                        } else {
-                            print("Nothing to do with \(l.letter.value)")
+                        } else if placedLetters != nil {
+                            state.place(
+                                letter: l, 
+                                for: player.index)
                         }
                     }
                     .frame(
