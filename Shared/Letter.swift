@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct IdLetter : Identifiable, Comparable {
+struct IdLetter : Hashable, Identifiable, Comparable {
     let id = UUID()
     var letter: Letter 
     

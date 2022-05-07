@@ -87,43 +87,29 @@ extension View {
 
 struct RevealModifierTestView: View {
     let from = Letter("A", points: 5)
-    let to = Letter("B", points: 2)
     
-    @State var flip = false
+    @State var to: Letter? = nil
     @State var uuid = UUID()
     
     var body: some View {
         VStack(spacing: 24) {
-            if !flip {
-                TileInHand(
-                    letter: from, 
-                    highlight: true)
-            } 
-            
-            if flip {
-                TileInHand(
-                    letter: from, 
-                    highlight: true)
-                    .modifier(
-                        RevealModifier(
-                            duration: 0.5, 
-                            callback: {
-                                flip = false
-                                uuid = UUID()
-                            },
-                            revealed: {
-                                TileInHand(
-                                    letter: to, 
-                                    highlight: false)
-                            }
-                        )
-                    )
-            }
+            FlippableTileInHand(
+                letter: from, 
+                highlight: true, 
+                flipped: to,
+                flipCallback: {
+                    to = nil
+                    uuid = UUID()
+                },
+                action: {
+                    print("Clicked")
+                })
+                .id(uuid)
             
             Button("Flip") {
-                flip = true
+                to = Letter("B", points: 2)
             }
-        }.id(uuid)
+        }
     }
 }
 

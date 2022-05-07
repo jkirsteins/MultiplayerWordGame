@@ -10,7 +10,12 @@ struct Word : Equatable {
 }
 
 typealias PlayerIndex = Int
-typealias SwapState = [IdLetter]
+
+/// Letters chosen for swap
+typealias LetterChoice = [IdLetter]
+
+/// Exchanged letters (from->to)
+typealias LetterSwap = [IdLetter:IdLetter]
 
 extension PlayerIndex {
     static let first = 0
@@ -18,21 +23,51 @@ extension PlayerIndex {
 
 class GameState : ObservableObject {
     /// Basic state machine of the current turn
-    enum State : Equatable {
+    enum GameStateOption : Equatable, CustomDebugStringConvertible {
         case idle(PlayerIndex) 
         case choosingDirection(PlayerIndex, WordDirection)
         case placing(PlayerIndex, Point, WordDirection, Word)
-        case swapping(PlayerIndex, SwapState)
+        case initializingSwap(PlayerIndex, LetterChoice)
+        case animatingSwap(PlayerIndex, LetterSwap)
         
-        /// Fetch swap state for a given player
-        /// (if the turn state is swapping)
-        func getSwapState(
-            for player: PlayerIndex) -> SwapState? 
+        var debugDescription: String {
+            switch(self) {
+                case .idle(let ix):
+                return "Idle (for \(ix))"
+            case .choosingDirection(let ix, _):
+                return "Choosing direction (for \(ix))"
+            case .placing(let ix, _, _, _):
+                return "Placing word (for \(ix))"
+            case .initializingSwap(let ix, _):
+                return "Choosing swap (for \(ix))"
+            case .animatingSwap(let ix, _):
+                return "Animating swap (for \(ix))"
+            }
+        }
+        
+        /// Fetch letters chosen for swapping (but not
+        /// yet swapped)
+        func getSwapChoice(
+            for player: PlayerIndex) -> LetterChoice? 
         {
             switch(self) {
-                case .swapping(player, let state): 
-                return state
+                case .initializingSwap(
+                    player, let choice): 
+                return choice
                 default:
+                return nil
+            }
+        }
+        
+        /// Fetch letters chosen for swapping once the
+        /// choice is final
+        func getSwap(
+            for player: PlayerIndex) -> LetterSwap? 
+        {
+            switch(self) {
+            case .animatingSwap(player, let swap): 
+                return swap
+            default:
                 return nil
             }
         }
@@ -40,10 +75,17 @@ class GameState : ObservableObject {
         /// Fetch current player index
         var player: PlayerIndex {
             switch(self) {
-                case .idle(let ix): return ix 
-                case .choosingDirection(let ix, _): return ix 
-                case .placing(let ix, _, _, _): return ix 
-                case .swapping(let ix, _): return ix
+                case .idle(let ix): 
+                return ix 
+                case .choosingDirection(let ix, _): 
+                return ix 
+                case .placing(let ix, _, _, _): 
+                return ix 
+                case .initializingSwap(
+                    let ix, _): 
+                return ix
+                case .animatingSwap(let ix, _):
+                return ix
             }
         }
     }
@@ -53,28 +95,28 @@ class GameState : ObservableObject {
     
     @Published var hands: [PlayerHand]
     
-    @Published var state: State = .idle(0)
+    @Published var state: GameStateOption = .idle(.first)
     
-    init(locale: Locale = .en_US) {
-        var dispenser = LetterDispenser(locale: locale)
+    init(_ w: Int, _ h: Int, locale: Locale = .en_US) {
+        self.board = BoardModel(w, h)
         
-        self.board = BoardModel(7, 7)
+        let (firstHand, ld) = Self.refill(hand: PlayerHand(), dispenser: LetterDispenser(locale: locale))
         
         self.hands = [
-            Self.refill(PlayerHand(), &dispenser)
+            firstHand
         ]
         
-        self.dispenser = dispenser
+        self.dispenser = ld
     }
     
-    func refill(_ hand: PlayerHand) -> PlayerHand {
-        Self.refill(hand, &dispenser)
-    }
+//    func refillSelf(_ hand: PlayerHand) -> PlayerHand {
+//        Self.refill(hand: hand, dispenser: &dispenser)
+//    }
     
     static func refill(
-        _ hand: PlayerHand, 
-        _ dispenser: inout LetterDispenser
-    ) -> PlayerHand {
+        hand: PlayerHand, 
+        dispenser: LetterDispenser
+    ) -> (PlayerHand, LetterDispenser) {
         let missing = 7 - hand.letters.count 
         let available = dispenser.remaining.count
         let toFetch = min(missing, available)
@@ -82,10 +124,12 @@ class GameState : ObservableObject {
         let fetched = dispenser.remaining.prefix(toFetch)
         let remaining = dispenser.remaining.dropFirst(toFetch)
         
-        dispenser = LetterDispenser(letters: Array(remaining))
-        return PlayerHand(
-            id: hand.id, 
-            letters: hand.letters + fetched)
+        let newDispenser = LetterDispenser(letters: Array(remaining))
+        return (
+            PlayerHand(
+                id: hand.id, 
+                letters: hand.letters + fetched),
+            newDispenser)
     }
     
     var rows: Int { board.rows }

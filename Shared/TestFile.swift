@@ -323,9 +323,20 @@ extension CGSize {
         return CGSize(width: self.width - by, height: self.height - by)
     }
     
+    var roundedStr: String {
+        var x = String(format: "%.2f", self.width)
+        var y = String(format: "%.2f", self.width)
+        return "(\(x), \(y))"
+    }
+    
     func minsq() -> CGSize {
         let minside = min(self.width, self.height)
         return CGSize(width: minside, height: minside)
+    }
+    
+    func maxsq() -> CGSize {
+        let maxside = max(self.width, self.height)
+        return CGSize(width: maxside, height: maxside)
     }
 }
 

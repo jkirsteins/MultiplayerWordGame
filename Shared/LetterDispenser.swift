@@ -3,8 +3,8 @@ import SwiftUI
 typealias LetterFrequency=(points: Int, count: Int)
 typealias LetterFrequencies=[String:LetterFrequency]
 
-struct LetterDispenser {
-    let remaining: [IdLetter] 
+class LetterDispenser {
+    var remaining: [IdLetter] 
     
     static func initialize(_ loc: Locale) -> [IdLetter] {
         switch(loc) {

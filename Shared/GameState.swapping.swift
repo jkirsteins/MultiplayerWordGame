@@ -4,60 +4,94 @@ import SwiftUI
 extension GameState {
     func startSwapping(for player: PlayerIndex) {
         guard case .idle(player) = self.state else { return }
-        self.state = .swapping(player, [])
+        self.state = .initializingSwap(player, [])
     }
     
-    func applySwap(for player: PlayerIndex) {
-        guard case .swapping(player, let letters) = self.state, letters.count > 0 else {
+    /// Start animating the swap
+    func startSwap(for player: PlayerIndex) {
+        guard 
+            case .initializingSwap(
+                player, let letters
+            ) = self.state, 
+                letters.count > 0
+        else {
             return
         }
         
-        self.swapLetters(letters, for: player)
-        self.state = .idle(player)
+        let swap = self.swapLetters(letters, for: player)
+        self.state = .animatingSwap(player, swap)
     }
     
-    func swapLetters(_ letters: [IdLetter], for player: PlayerIndex)
-    {
+    /// Finalize swap (post animation)
+    func finalizeSwap(for player: PlayerIndex) {
         guard let hand = self.hands.optGet(player) else {
             fatalError("Hand not found")
         }
         
-        let handRemaining = hand.letters.filter { letter in
-            !letters.contains(letter)
+        guard 
+            case .animatingSwap(
+                player, let swap
+            ) = self.state
+        else {
+            return
         }
         
-        self.dispenser = LetterDispenser(
-            letters: self.dispenser.remaining + letters)
+        self.hands[player] = PlayerHand(
+            id: hand.id, 
+            letters: hand.letters.map { l in
+                swap[l] ?? l
+            }) 
         
-        self.hands[player] = self.refill(PlayerHand(
-            id: hand.id,
-            letters: handRemaining))
+        self.state = .idle(player)
+    }
+    
+    func swapLetters(_ swapped: [IdLetter], for player: PlayerIndex) -> LetterSwap
+    {
+        guard dispenser.remaining.count >= swapped.count 
+        else {
+            return [:]
+        }
+        
+        let swappedFor = dispenser.remaining.prefix(swapped.count)
+        
+        let remaining = dispenser.remaining.dropFirst(swapped.count)
+        
+        self.dispenser = LetterDispenser(
+            letters: remaining + swapped)
+        
+        return Dictionary(uniqueKeysWithValues: zip(swapped, swappedFor))
     }
     
     func invertSwapState(for player: PlayerIndex) {
         guard 
-            case .swapping(player, var swapState) = self.state,
+            case .initializingSwap(player, var choice) = self.state,
             let letters = self.hands.optGet(player)?.letters
         else {
             return
         }
         
-        swapState = letters.filter({ 
+        choice = letters.filter({ 
             letter in
-            !swapState.contains(letter)
+            !choice.contains(letter)
         })
-        self.state = .swapping(player, swapState)
+        self.state = .initializingSwap(player, choice)
     }
     
     func cancelSwap(for player: PlayerIndex) {
-        guard case .swapping(player, _) = self.state else { return }
+        guard case .initializingSwap(player, _) = self.state else { 
+            return 
+        }
         self.state = .idle(player)
     }
     
-    func toggleSwapState(
+    func toggleSwapChoice(
         for player: PlayerIndex, 
-        letter l: IdLetter) {
-        guard case .swapping(player, var letters) = self.state else {
+        letter l: IdLetter) 
+    {
+        guard 
+            case .initializingSwap(
+                player, var letters) = self.state 
+        else {
             return
         }
         
@@ -67,6 +101,6 @@ extension GameState {
             letters.append(l)
         }
         
-        self.state = .swapping(player, letters)
+        self.state = .initializingSwap(player, letters)
     }
 }
