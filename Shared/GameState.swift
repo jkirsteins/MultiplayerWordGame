@@ -1,10 +1,59 @@
 import SwiftUI
 
+struct Point : Equatable {
+    let x: Int
+    let y: Int
+}
+
+struct Word : Equatable {
+    let letters: [Letter]
+}
+
+typealias PlayerIndex = Int
+typealias SwapState = [IdLetter]
+
+extension PlayerIndex {
+    static let first = 0
+}
+
 class GameState : ObservableObject {
+    /// Basic state machine of the current turn
+    enum State : Equatable {
+        case idle(PlayerIndex) 
+        case choosingDirection(PlayerIndex, WordDirection)
+        case placing(PlayerIndex, Point, WordDirection, Word)
+        case swapping(PlayerIndex, SwapState)
+        
+        /// Fetch swap state for a given player
+        /// (if the turn state is swapping)
+        func getSwapState(
+            for player: PlayerIndex) -> SwapState? 
+        {
+            switch(self) {
+                case .swapping(player, let state): 
+                return state
+                default:
+                return nil
+            }
+        }
+        
+        /// Fetch current player index
+        var player: PlayerIndex {
+            switch(self) {
+                case .idle(let ix): return ix 
+                case .choosingDirection(let ix, _): return ix 
+                case .placing(let ix, _, _, _): return ix 
+                case .swapping(let ix, _): return ix
+            }
+        }
+    }
+    
     @Published var board: BoardModel
     @Published var dispenser: LetterDispenser
     
     @Published var hands: [PlayerHand]
+    
+    @Published var state: State = .idle(0)
     
     init(locale: Locale = .en_US) {
         var dispenser = LetterDispenser(locale: locale)
@@ -22,7 +71,10 @@ class GameState : ObservableObject {
         Self.refill(hand, &dispenser)
     }
     
-    static func refill(_ hand: PlayerHand, _ dispenser: inout LetterDispenser) -> PlayerHand {
+    static func refill(
+        _ hand: PlayerHand, 
+        _ dispenser: inout LetterDispenser
+    ) -> PlayerHand {
         let missing = 7 - hand.letters.count 
         let available = dispenser.remaining.count
         let toFetch = min(missing, available)
@@ -49,6 +101,7 @@ class GameState : ObservableObject {
     
     var existingChoiceStashed: (Int, Int, TileModel)? = nil
     
+    
     func resetExistingChoice() {
         if let stashPop = existingChoiceStashed {
             self.setType(
@@ -57,26 +110,6 @@ class GameState : ObservableObject {
                 y: stashPop.1)
         } 
         self.existingChoiceStashed = nil
-    }
-    
-    func swapLetters(_ letters: [IdLetter], for hand: PlayerHand)
-    {
-        guard let handIx = self.hands.firstIndex(where: { 
-            $0 == hand 
-        }) else {
-            fatalError("Hand not found")
-        }
-        
-        let handRemaining = hand.letters.filter { letter in
-            !letters.contains(letter)
-        }
-        
-        self.dispenser = LetterDispenser(
-            letters: self.dispenser.remaining + letters)
-        
-        self.hands[handIx] = refill(PlayerHand(
-            id: hand.id,
-            letters: handRemaining))
     }
     
     func tryStart(x: Int, y: Int) {
