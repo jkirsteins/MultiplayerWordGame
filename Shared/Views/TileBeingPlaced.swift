@@ -2,7 +2,7 @@ import SwiftUI
 
 fileprivate let MAX_SIDE = CGFloat(25)
 
-fileprivate struct TileInHandButtonStyle: ButtonStyle {
+fileprivate struct TileBeingPlacedButtonStyle: ButtonStyle {
     
     var shadowHeight: CGFloat {
         //        config.idealTileSize.height / 17.50
@@ -15,25 +15,13 @@ fileprivate struct TileInHandButtonStyle: ButtonStyle {
     
     let regularTextColor = Color(hex: 0x1f1b14)
     let regularColor = Color(hex: 0xf6d2aa)
-    let highlight: TileHighlight?
     
     var textColor: Color {
-        guard let _ = highlight else {
-            return regularTextColor
-        }
-        
-        return .white
+        regularTextColor
     }
     
     var color: Color {
-        guard let highlight = highlight else {
-            return regularColor
-        }
-        
-        switch(highlight) {
-            case .selected: return .blue.lighter
-            case .placed: return .gray.lighter
-        }
+        regularColor
     }
     
     func makeBody(configuration: Configuration) -> some View {
@@ -83,7 +71,7 @@ fileprivate struct TileInHandButtonStyle: ButtonStyle {
     }
 }
 
-struct TileInHand: View {
+struct TileBeingPlaced: View {
     let letter: Letter
     let highlight: TileHighlight?
     let action: ()->()
@@ -100,63 +88,23 @@ struct TileInHand: View {
         self.action = action
     }
     
-    var pointMessage: String {
-        if letter.points == 1 {
-            return "1 pt"
-        }
-        
-        return "\(letter.points) pts"
-    }
-    
     var body: some View {
         Button(action: action, label: {
             ZStack {
                 Text(verbatim: "\(letter.value)")
-                                    .font(.system(size: 800))
-                                    .fontWeight(.bold)
-                                    
-                //                    .fixedSize()
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Text(String(describing: letter.points))
-                            .fixedSize()
-                            .font(.caption)
-                    }
-                }
+                    .font(.system(size: 800))
+                    .fontWeight(.bold)
             }
             .minimumScaleFactor(0.001)
         })
-            .buttonStyle(TileInHandButtonStyle(highlight: highlight))
+            .buttonStyle(TileBeingPlacedButtonStyle())
     }
 }
 
-struct TileInHand_Previews: PreviewProvider {
+struct TileBeingPlaced_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            TileInHand(letter: .init("A", points: 5))
-            
-            TileInHand(letter: .init("A", points: 5), highlight: .selected)
-            
-            TileInHand(letter: .init("A", points: 5), highlight: .placed)
-            
-            HStack {
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-            }
-            
-            HStack {
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-                TileInHand(letter: .init("A", points: 5))
-            }
+            TileBeingPlaced(letter: .init("A", points: 5))
         }
     }
 }

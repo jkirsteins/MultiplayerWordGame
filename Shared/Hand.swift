@@ -75,7 +75,7 @@ struct HandRow: View {
                                 for: player.index, 
                                    letter: l)
                         } else if placedLetters != nil {
-                            state.place(
+                            state.togglePlace(
                                 letter: l, 
                                 for: player.index)
                         }

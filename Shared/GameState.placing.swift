@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension GameState {
-    func place(
+    func togglePlace(
         letter: IdLetter, 
         for player: PlayerIndex)
     {
@@ -14,7 +14,15 @@ extension GameState {
             return 
         }
         
-        let newLetters = word.letters + [letter]
+        let newLetters: [IdLetter] 
+        if word.letters.contains(letter) {
+            newLetters = word.letters.filter { 
+                $0 != letter 
+            } 
+        } else {
+            newLetters = word.letters + [letter]
+        }
+        print("Placed", newLetters.map({ $0.letter.value }).joined())
         self.state = .placing(player, point, dir, Word(letters: newLetters))
     }
     
@@ -49,7 +57,6 @@ extension GameState {
             direction = .right
         }
         
-        print("Placing at", point)
         self.state = .placing(player, point, direction, Word(letters: []))
     }
 }

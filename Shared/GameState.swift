@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Point : Equatable {
+struct Point : Equatable, Hashable {
     let x: Int
     let y: Int
 }
@@ -27,7 +27,6 @@ class GameState : ObservableObject {
     /// Basic state machine of the current turn
     enum GameStateOption : Equatable, CustomDebugStringConvertible {
         case idle(PlayerIndex) 
-//        case choosingDirection(PlayerIndex, WordDirection)
         case placing(PlayerIndex, Point, WordDirection, Word)
         case initializingSwap(PlayerIndex, LetterChoice)
         case animatingSwap(PlayerIndex, LetterSwap)
@@ -36,8 +35,6 @@ class GameState : ObservableObject {
             switch(self) {
                 case .idle(let ix):
                 return "Idle (for \(ix))"
-//            case .choosingDirection(let ix, _):
-//                return "Choosing direction (for \(ix))"
             case .placing(let ix, _, let dir, _):
                 return "Placing word \(dir) (for \(ix))"
             case .initializingSwap(let ix, _):
@@ -110,10 +107,6 @@ class GameState : ObservableObject {
         
         self.dispenser = ld
     }
-    
-//    func refillSelf(_ hand: PlayerHand) -> PlayerHand {
-//        Self.refill(hand: hand, dispenser: &dispenser)
-//    }
     
     static func refill(
         hand: PlayerHand, 
