@@ -74,7 +74,7 @@ struct HandRow: View {
                             state.toggleSwapChoice(
                                 for: player.index, 
                                    letter: l)
-                        } else if placedLetters != nil {
+                        } else if state.isPlacing(for: player.index) {
                             state.togglePlace(
                                 letter: l, 
                                 for: player.index)
@@ -121,7 +121,18 @@ struct IdleHand: View {
                 
                 Button("Submit") {
                     
+                }.disabled(true)
+            }
+            
+            if case .placing(player.index, let placingData) = state.state {
+                Button("Cancel") {
+                    state.cancelPlacing(for: player.index)
                 }
+                
+                Button("Submit") {
+                    state.applyPlacing(for: player.index)
+                }
+                .disabled(placingData.placed.isEmpty)
             }
         }
     }

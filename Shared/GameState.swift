@@ -5,11 +5,11 @@ struct Point : Equatable, Hashable {
     let y: Int
 }
 
-struct Word : Equatable {
-    /// Identifiable letters instead of regular letters,
-    /// so we can map against the hand (and highlight)
-    let letters: [IdLetter]
-}
+//struct Word : Equatable {
+//    /// Identifiable letters instead of regular letters,
+//    /// so we can map against the hand (and highlight)
+//    let letters: [IdLetter]
+//}
 
 typealias PlayerIndex = Int
 
@@ -23,11 +23,17 @@ extension PlayerIndex {
     static let first = 0
 }
 
+struct PlacingData : Equatable {
+    let origin: Point
+    let direction: WordDirection
+    let placed: [IdLetter]
+}
+
 class GameState : ObservableObject {
     /// Basic state machine of the current turn
     enum GameStateOption : Equatable, CustomDebugStringConvertible {
         case idle(PlayerIndex) 
-        case placing(PlayerIndex, Point, WordDirection, Word)
+        case placing(PlayerIndex, PlacingData)
         case initializingSwap(PlayerIndex, LetterChoice)
         case animatingSwap(PlayerIndex, LetterSwap)
         
@@ -35,8 +41,8 @@ class GameState : ObservableObject {
             switch(self) {
                 case .idle(let ix):
                 return "Idle (for \(ix))"
-            case .placing(let ix, _, let dir, _):
-                return "Placing word \(dir) (for \(ix))"
+            case .placing(let ix, let d):
+                return "Placing word \(d.direction) (for \(ix))"
             case .initializingSwap(let ix, _):
                 return "Choosing swap (for \(ix))"
             case .animatingSwap(let ix, _):
@@ -78,7 +84,7 @@ class GameState : ObservableObject {
                 return ix 
 //                case .choosingDirection(let ix, _): 
 //                return ix 
-                case .placing(let ix, _, _, _): 
+                case .placing(let ix, _): 
                 return ix 
                 case .initializingSwap(
                     let ix, _): 
@@ -155,6 +161,8 @@ class GameState : ObservableObject {
         let existing = self.tileAt(x: x, y: y)
         
         switch (existing) {
+            case .letter(_):
+            return
             case .start, .empty, .random, .active:
             resetExistingChoice()
             existingChoiceStashed = (x, y, existing)

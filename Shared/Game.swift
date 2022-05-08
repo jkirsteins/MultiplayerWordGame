@@ -89,7 +89,8 @@ struct Game: View {
                 rows: rows, 
                 cols: cols))
             .environmentObject(state)
-            .environment(\.player, Player(index: 0))
+            .environment(\.player, 
+                          Player(index: 0, color: .green))
             .debugBorder(.purple)
         }
         .simultaneousGesture(MagnificationGesture()

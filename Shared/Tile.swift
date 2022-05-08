@@ -39,7 +39,7 @@ struct Tile<Overlay: View> : View {
         switch(state.state) {
         case 
                 .idle(player.index), 
-                .placing(player.index, _, _, _):
+                .placing(player.index, _):
             return true 
         default:
             return false
@@ -48,12 +48,12 @@ struct Tile<Overlay: View> : View {
     
     var cursor: Cursor? {
         guard 
-            case .placing(player.index, let cp, let dir, _) = state.state 
+            case .placing(player.index, let data) = state.state 
         else {
             return nil
         }
         
-        return Cursor(point: cp, direction: dir)
+        return Cursor(point: data.origin, direction: data.direction)
     }
     
     var body: some View {

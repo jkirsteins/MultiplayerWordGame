@@ -17,6 +17,7 @@ enum TileModel : Equatable {
     case empty
     case choosing(WordDirection)
     case random
+    case letter(Letter)
     case active
     case start
     

@@ -62,7 +62,6 @@ struct Board : View {
                     tile(at: point).overlay(
                         overlayTile(at: point)
                     )
-                    
                 }
             }
         }
@@ -70,28 +69,30 @@ struct Board : View {
     
     func overlayTile(at point: Point) -> AnyView
     {
-        guard case .placing(player.index, let placeOrigin, let dir, let word) = gameState.state else {
+        guard case .placing(player.index, let data) = gameState.state else {
             return AnyView(EmptyView())
         }
         
         let letterIndex: Int?
-        switch(dir, placeOrigin.x, placeOrigin.y) {
+        switch(data.direction, data.origin.x, data.origin.y) {
         case (.right, _, point.y):
-            letterIndex = point.x - placeOrigin.x 
+            letterIndex = point.x - data.origin.x 
         case (.down, point.x, _):
-            letterIndex = point.y - placeOrigin.y
+            letterIndex = point.y - data.origin.y
         default:
             letterIndex = nil
         }
         
         if let ix = letterIndex {
-            if let l = word.letters.optGet(ix) {
+            if let l = data.placed.optGet(ix) {
                 return AnyView(LetterTile_Static(
-                    l.letter.value, 
-                    lowered: true, lowerTop: false))
+                    l.letter.value,
+                    color: player.color,
+                    lowered: true,
+                    lowerTop: false))
             }
             
-            if ix == word.letters.count && word.letters.count < 7 {
+            if ix == data.placed.count && data.placed.count < 7 {
                 let cursor = ZStack {
                                 Rectangle()
                                     .fill(.black)
@@ -101,7 +102,7 @@ struct Board : View {
                                     .border(.white, width: 1)
                                 
                                 Group {
-                                    if dir == .right {
+                                    if data.direction == .right {
                                         Image(systemName: "arrow.right.square.fill")
                                             .blinking()
                                         
@@ -123,6 +124,21 @@ struct Board : View {
     
     @ViewBuilder 
     func tile(at point: Point) -> some View {
+        let ix = point.y * self.model.cols + point.x
+        let tileModel: TileModel = self.model.board[ix] 
+        switch(tileModel) {
+        case .letter(let l):
+            LetterTile_Static(
+                l.value, 
+                lowered: false, 
+                lowerTop: true)
+        default:
+            underlyingTile(at: point)
+        } 
+    }
+    
+    @ViewBuilder 
+    func underlyingTile(at point: Point) -> some View {
         switch(point.x, point.y) {
         case (7, 7):
             TileStart(point: point)
