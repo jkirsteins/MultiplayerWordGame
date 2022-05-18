@@ -39,7 +39,8 @@ additionalInfoPlistContentFilePath: "MoreInfo.plist"
         .executableTarget(
             name: "AppModule",
             path: ".",
-exclude: ["./MoreInfo.plist"]
+exclude: ["./MoreInfo.plist"],
+resources: [ .process("Resources")]
         )
     ]
 )
