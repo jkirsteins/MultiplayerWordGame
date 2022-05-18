@@ -73,14 +73,58 @@ struct Board : View {
             return AnyView(EmptyView())
         }
         
+        let pointIx = point.y * model.cols + point.x
+        if case .some(.letter(let xxx)) = model.board.optGet(pointIx) {
+            return AnyView(EmptyView())
+        }
+        
+        func skip(from o: Point, horizontally count: Int) -> Int {
+            guard count > 0 else {
+                return 0
+            }
+            
+            var result = 0
+            for ix in 0..<count {
+                let realIx = o.y * self.model.cols + o.x + ix
+                if case .some(.letter(_)) = model.board.optGet(realIx) {
+                    result += 1
+                } else {
+                    print("Nothing", model.board.optGet(realIx))
+                }
+            }
+            return result
+        }
+        
+        func skip(from o: Point, vertically count: Int) -> Int {
+            guard count > 0 else {
+                return 0
+            }
+            
+            var result = 0
+            for ix in 0..<count {
+                let realIx = (o.y + ix) * self.model.cols + o.x 
+                if case .some(.letter(_)) = model.board.optGet(realIx) {
+                    result += 1
+                } else {
+                    print("Nothing", model.board.optGet(realIx))
+                }
+            }
+            return result
+        }
+        
         let letterIndex: Int?
         switch(data.direction, data.origin.x, data.origin.y) {
         case (.right, _, point.y):
-            letterIndex = point.x - data.origin.x 
+            letterIndex = point.x - data.origin.x - skip(from: data.origin, horizontally: point.x - data.origin.x)
         case (.down, point.x, _):
-            letterIndex = point.y - data.origin.y
+            letterIndex = point.y - data.origin.y - skip(from: data.origin, vertically: point.y - data.origin.y)
         default:
             letterIndex = nil
+        }
+        
+        if point.x == 3 && point.y == 1 {
+            let skip = skip(from: data.origin, horizontally: point.x - data.origin.x)
+            print("Yo", letterIndex, skip)
         }
         
         if let ix = letterIndex {

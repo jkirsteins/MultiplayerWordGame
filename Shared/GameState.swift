@@ -104,6 +104,12 @@ class GameState : ObservableObject {
     
     init(_ w: Int, _ h: Int, locale: Locale = .en_US) {
         self.board = BoardModel(w, h)
+            .changed(
+                .letter(.init("W", points: 2)), 
+                x: 1, y: 1)
+            .changed(
+                .letter(.init("E", points: 2)), 
+                x: 2, y: 1)
         
         let (firstHand, ld) = Self.refill(hand: PlayerHand(), dispenser: LetterDispenser(locale: locale))
         
