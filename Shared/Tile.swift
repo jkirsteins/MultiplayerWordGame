@@ -64,11 +64,11 @@ struct Tile<Overlay: View> : View {
                 }, label: {
                     Rectangle()
                         .fill(color)
-                        .frame(maxWidth: 50, maxHeight: 50)
                         .aspectRatio(1, contentMode: .fit)
                         .border(.white, width: 1)
                 })
                 .disabled(!canPlaceWord)
+                .buttonStyle(.plain)
             
 //            if let cp = self.cursor, cp.point == point {
 //                Rectangle()

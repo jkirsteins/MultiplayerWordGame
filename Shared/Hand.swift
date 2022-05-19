@@ -32,7 +32,7 @@ struct HandRow: View {
     /// Returns true if we are picking letters for swap
     var isChoosingSwap: Bool {
         switch(state.state) {
-        case .initializingSwap(player.index, _): 
+        case .initializingSwap(player.index, _):
             return true
         default: return false
         }
@@ -40,7 +40,7 @@ struct HandRow: View {
     
     func shouldHighlight(_ l: IdLetter) -> TileHighlight? {
         if swapChoice.contains(l) || swap.keys.contains(l) {
-            return .selected 
+            return .selected
         }
         
         if placedLetters.contains(l) == true {
@@ -60,23 +60,23 @@ struct HandRow: View {
         if let letters = hand?.letters {
             HStack {
                 ForEach(letters) {
-                    l in 
+                    l in
                     
                     FlippableTileInHand(
-                        letter: l.letter, 
+                        letter: l.letter,
                         highlight: shouldHighlight(l),
                         flipped: flipLetter(for: l),
                         flipCallback: {
                             flippedSwapped += 1
-                        }) 
+                        })
                     {
                         if isChoosingSwap {
                             state.toggleSwapChoice(
-                                for: player.index, 
-                                   letter: l)
+                                for: player.index,
+                                letter: l)
                         } else if state.isPlacing(for: player.index) {
                             state.togglePlace(
-                                letter: l, 
+                                letter: l,
                                 for: player.index)
                         }
                     }
@@ -86,7 +86,7 @@ struct HandRow: View {
                 }
             }
             .onChange(of: self.flippedSwapped) {
-                newCount in 
+                newCount in
                 guard self.swap.keys.count > 0 else {
                     return
                 }
@@ -111,28 +111,30 @@ struct IdleHand: View {
     }
     
     var body: some View {
-        HandRow()
-        
-        HStack {
-            if case .idle(player.index) = state.state {
-                Button("Swap") {
-                    state.startSwapping(for: player.index)
-                }
-                
-                Button("Submit") {
-                    
-                }.disabled(true)
-            }
+        VStack {
+            HandRow()
             
-            if case .placing(player.index, let placingData) = state.state {
-                Button("Cancel") {
-                    state.cancelPlacing(for: player.index)
+            HStack {
+                if case .idle(player.index) = state.state {
+                    Button("Swap") {
+                        state.startSwapping(for: player.index)
+                    }
+                    
+                    Button("Submit") {
+                        
+                    }.disabled(true)
                 }
                 
-                Button("Submit") {
-                    state.applyPlacing(for: player.index)
+                if case .placing(player.index, let placingData) = state.state {
+                    Button("Cancel") {
+                        state.cancelPlacing(for: player.index)
+                    }
+                    
+                    Button("Submit") {
+                        state.applyPlacing(for: player.index)
+                    }
+                    .disabled(placingData.placed.isEmpty)
                 }
-                .disabled(placingData.placed.isEmpty)
             }
         }
     }

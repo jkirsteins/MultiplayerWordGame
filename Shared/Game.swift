@@ -82,6 +82,7 @@ struct Game: View {
                 Text(verbatim: "\(boardSize?.roundedStr ?? "-") -> \(scaledFrame.roundedStr) -> \(initialSize?.roundedStr ?? "-")")
                 Text(verbatim: "Scaling \(sce)")
                 Hand()
+                    .frame(maxHeight: 100)
             }
             .environment(\.gridConfig, GridConfig(
                 spacing: spacing, 
