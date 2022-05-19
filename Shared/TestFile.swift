@@ -322,8 +322,8 @@ extension CGSize {
     }
     
     var roundedStr: String {
-        var x = String(format: "%.2f", self.width)
-        var y = String(format: "%.2f", self.width)
+        let x = String(format: "%.2f", self.width)
+        let y = String(format: "%.2f", self.width)
         return "(\(x), \(y))"
     }
     
