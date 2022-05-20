@@ -10,6 +10,8 @@
 		E7341BE82822DC2E00AFF116 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7341BE72822DC2E00AFF116 /* GameKit.framework */; };
 		E7341BEA2822DC9800AFF116 /* AppRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7341BE92822DC9800AFF116 /* AppRoot.swift */; };
 		E7341BEB2822DC9800AFF116 /* AppRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7341BE92822DC9800AFF116 /* AppRoot.swift */; };
+		E7346322283841F300265F8F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7346321283841F300265F8F /* MainMenu.swift */; };
+		E7346323283841F300265F8F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7346321283841F300265F8F /* MainMenu.swift */; };
 		E7DDE1FB2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FC2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FD2822CFAB0033B3A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */; };
@@ -82,6 +84,7 @@
 /* Begin PBXFileReference section */
 		E7341BE72822DC2E00AFF116 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		E7341BE92822DC9800AFF116 /* AppRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoot.swift; sourceTree = "<group>"; };
+		E7346321283841F300265F8F /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerWordGameApp.swift; sourceTree = "<group>"; };
 		E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E7DDE1ED2822CFAB0033B3A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +146,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E7346320283841E400265F8F /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E7346321283841F300265F8F /* MainMenu.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
 		E7DDE1E52822CFA90033B3A1 = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +273,7 @@
 		E7F299172836C97E005792DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E7346320283841E400265F8F /* MainMenu */,
 				E7F299182836C97E005792DA /* TileInHand.swift */,
 				E7F299192836C97E005792DA /* LetterTileBase.swift */,
 				E7F2991A2836C97E005792DA /* FlippableTileInHand.swift */,
@@ -377,6 +389,7 @@
 				E7F299222836C97E005792DA /* RevealModifier.swift in Sources */,
 				E7F299422836C97F005792DA /* LetterDispenser.swift in Sources */,
 				E7F299442836C97F005792DA /* IntExtensions.swift in Sources */,
+				E7346322283841F300265F8F /* MainMenu.swift in Sources */,
 				E7F299322836C97E005792DA /* Hand.swift in Sources */,
 				E7DDE2132822D1800033B3A1 /* Board.swift in Sources */,
 				E7DDE2162822D5C50033B3A1 /* GKAuthentication.swift in Sources */,
@@ -417,6 +430,7 @@
 				E7F299232836C97E005792DA /* RevealModifier.swift in Sources */,
 				E7F299432836C97F005792DA /* LetterDispenser.swift in Sources */,
 				E7F299452836C97F005792DA /* IntExtensions.swift in Sources */,
+				E7346323283841F300265F8F /* MainMenu.swift in Sources */,
 				E7F299332836C97E005792DA /* Hand.swift in Sources */,
 				E7DDE2142822D1800033B3A1 /* Board.swift in Sources */,
 				E7DDE2172822D5C50033B3A1 /* GKAuthentication.swift in Sources */,
