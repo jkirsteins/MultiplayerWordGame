@@ -15,11 +15,13 @@ enum WordDirection : Equatable {
 
 enum TileModel : Equatable {
     case empty
-    case choosing(WordDirection)
+    
+    case cursor(WordDirection)
+    
     case random
     case letter(Letter)
     case active
     case start
     
-    static let startChoosing = TileModel.choosing(.right)
+    static let startChoosing = TileModel.cursor(.right)
 }

@@ -3,12 +3,12 @@ import SwiftUI
 struct BoardModel {
     let board: [TileModel]
     
-    let rows: Int 
+    let rows: Int
     let cols: Int
     
     private init(_ rows: Int, _ cols: Int, board: [TileModel]) {
-        self.rows = rows 
-        self.cols = cols 
+        self.rows = rows
+        self.cols = cols
         
         self.board = board
     }
@@ -18,8 +18,8 @@ struct BoardModel {
     }
     
     init(_ cols: Int, _ rows: Int) {
-        self.rows = rows 
-        self.cols = cols 
+        self.rows = rows
+        self.cols = cols
         
         let midx = Int(floor(CGFloat(cols)/2.0))
         let midy = Int(floor(CGFloat(rows)/2.0))
@@ -31,7 +31,7 @@ struct BoardModel {
         
         var currentRandom = [0, 0, 0, 0]
         
-        self.board =  
+        self.board =
         (0..<rows).flatMap { y in
             (0..<cols).map { x in
                 
@@ -43,9 +43,9 @@ struct BoardModel {
                 case (true, false): quadrant = 1
                 case (false, true): quadrant = 2
                 case (true, true): quadrant = 3
-                } 
+                }
                 
-                guard 
+                guard
                     x != midx || y != midy
                 else {
                     return .start
@@ -68,9 +68,17 @@ struct BoardModel {
         }
     }
     
+    func index(x: Int, y: Int) -> Int? {
+        let result = y*cols + x
+        guard result < self.board.count
+        else {
+            return nil
+        }
+        return result
+    }
+    
     func tileAt(x: Int, y: Int) -> TileModel {
-        let ix = y*cols + x
-        guard ix < self.board.count else {
+        guard let ix = index(x: x, y: y) else {
             fatalError("Wrong index requested \(x) \(y) (cols \(cols) rows \(rows))")
         }
         
@@ -80,7 +88,7 @@ struct BoardModel {
     
     func changed(_ model: TileModel, x: Int, y: Int) -> BoardModel {
         var data = self.board
-        data[y * cols + x] = model 
+        data[y * cols + x] = model
         return BoardModel(rows, cols, board: data)
     }
 }

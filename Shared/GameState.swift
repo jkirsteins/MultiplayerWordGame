@@ -1,8 +1,18 @@
 import SwiftUI
+import Combine
 
 struct Point : Equatable, Hashable {
     let x: Int
     let y: Int
+    
+    func moved(_ dir: WordDirection) -> Point {
+        switch(dir) {
+        case .right:
+            return Point(x: x+1, y: y)
+        case .down:
+            return Point(x: x, y: y+1)
+        }
+    }
 }
 
 //struct Word : Equatable {
@@ -95,7 +105,11 @@ class GameState : ObservableObject {
         }
     }
     
-    @Published var board: BoardModel
+    var board: BoardModel {
+        boardView.model
+    }
+    
+    @Published var boardView: BoardView
     @Published var dispenser: LetterDispenser
     
     @Published var hands: [PlayerHand]
@@ -103,13 +117,14 @@ class GameState : ObservableObject {
     @Published var state: GameStateOption = .idle(.first)
     
     init(_ w: Int, _ h: Int, locale: Locale = .en_US) {
-        self.board = BoardModel(w, h)
+        let model = BoardModel(w, h)
             .changed(
-                .letter(.init("W", points: 2)), 
+                .letter(.init("W", points: 2)),
                 x: 1, y: 1)
             .changed(
-                .letter(.init("E", points: 2)), 
+                .letter(.init("E", points: 2)),
                 x: 2, y: 1)
+        self.boardView = BoardView(model: model)
         
         let (firstHand, ld) = Self.refill(hand: PlayerHand(), dispenser: LetterDispenser(locale: locale))
         
@@ -147,7 +162,7 @@ class GameState : ObservableObject {
     }
     
     func setType(_ model: TileModel, x: Int, y: Int) {
-        self.board = self.board.changed(model, x: x, y: y)
+        self.boardView = BoardView(model: self.board.changed(model, x: x, y: y))
     }
     
     var existingChoiceStashed: (Int, Int, TileModel)? = nil
@@ -176,9 +191,9 @@ class GameState : ObservableObject {
                 .startChoosing, 
                 x: x, 
                 y: y)
-            case .choosing(let dir):
+            case .cursor(let dir):
             self.setType(
-                .choosing(dir.rotate()), 
+                .cursor(dir.rotate()), 
                 x: x, 
                 y: y)
         }

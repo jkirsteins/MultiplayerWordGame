@@ -8,7 +8,7 @@ struct TDButtonModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         switch(model) {
-            case .choosing(_):
+            case .cursor(_):
             content.buttonStyle(TDButtonStyle(isCurrent: false))
         case .active:
 //            content.buttonStyle(TDButtonStyle(isCurrent: isCurrent))
@@ -74,7 +74,7 @@ struct TDStartButton: View {
     }
     
     var title: String {
-        guard case let .choosing(direction) = model else {
+        guard case let .cursor(direction) = model else {
             return ""
         }
         
@@ -295,7 +295,7 @@ struct TDView: View {
     var body: some View {
         ZStack(alignment: .top) {
             switch(model) {
-                case .empty, .choosing(_), .start, .random:
+                case .empty, .cursor(_), .start, .random:
                 TDStartButton(x: x, y: y)
                 default:
             TDButton(x: x, y: y)

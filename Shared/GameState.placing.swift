@@ -21,22 +21,9 @@ extension GameState {
         else { 
             return 
         }
-        
-        let stride = (
-            data.direction == .right ? 1 : board.cols)
-        
-        let originIx = data.origin.y * board.cols + data.origin.x
-        
-        var tiles = board.board
-        
-        for ix in 0..<data.placed.count {
-            let l = data.placed[ix]
-            let boardIx = originIx + ix * stride
-            tiles[boardIx] = .letter(l.letter)
-        } 
-        
-        self.board = self.board.replaced(with: tiles)
-        self.state = .idle(player)
+                
+        self.boardView = BoardView(model: self.boardView.flattened(placed: data))
+        self.startRefill(for: player, letters: data.placed)
     }
     
     func cancelPlacing(for player: PlayerIndex) {

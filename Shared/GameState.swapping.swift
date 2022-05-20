@@ -7,6 +7,12 @@ extension GameState {
         self.state = .initializingSwap(player, [])
     }
     
+    /// Start animating the swap that was not initiated by the player
+    func startRefill(for player: PlayerIndex, letters: [IdLetter]) {
+        let swap = self.refillLetters(letters, for: player)
+        self.state = .animatingSwap(player, swap)
+    }
+    
     /// Start animating the swap
     func startSwap(for player: PlayerIndex) {
         guard 
@@ -43,6 +49,18 @@ extension GameState {
             }) 
         
         self.state = .idle(player)
+    }
+    
+    func refillLetters(_ placed: [IdLetter], for player: PlayerIndex) -> LetterSwap
+    {
+        let refillCount = min(placed.count, dispenser.remaining.count)
+        let refilled = dispenser.remaining.prefix(refillCount)
+        let remaining = dispenser.remaining.dropFirst(refillCount)
+        
+        self.dispenser = LetterDispenser(
+            letters: Array(remaining))
+        
+        return Dictionary(uniqueKeysWithValues: zip(placed, refilled))
     }
     
     func swapLetters(_ swapped: [IdLetter], for player: PlayerIndex) -> LetterSwap
