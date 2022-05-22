@@ -7,10 +7,12 @@
 
 import SwiftUI
 import GameKit
+import GameKitUI
 
 enum AppState {
     case unknown
     case menu
+    case creatingMatch
     case game
 }
 
@@ -33,16 +35,16 @@ struct AppRoot : View {
             }
         }
         .padding()
-        #if os(macOS)
+#if os(macOS)
         .frame(minWidth: 640, minHeight: 480)
-        #endif
-            .environment(\.appState, $state)
-            .environment(\.fatalErrorBinding, $fatalError)
+#endif
+        .environment(\.appState, $state)
+        .environment(\.fatalErrorBinding, $fatalError)
     }
     
     @ViewBuilder
     var authenticatedInnerBody: some View {
-        GKAuthentication {
+        GKAuthentication_Internal {
             MatchLoader {
                 unauthenticatedInnerBody
             }
@@ -56,6 +58,18 @@ struct AppRoot : View {
             Text("Error, unknown game state.")
         case .menu:
             MainMenu()
+        case .creatingMatch:
+            GKTurnBasedMatchmakerView(
+                                minPlayers: 2,
+                                maxPlayers: 4,
+                                inviteMessage: "Let us play together!"
+                            ) {
+                state = .menu
+            } failed: { (error) in
+                fatalError = error
+            } started: { (match) in
+                print("Match Started")
+            }
         case .game:
             Game()
         }

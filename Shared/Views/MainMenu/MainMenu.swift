@@ -15,7 +15,7 @@ struct MainMenu : View {
         HStack {
             LazyVStack {
                 Button(action: {
-                    appState.wrappedValue = .game
+                    appState.wrappedValue = .creatingMatch
                 }) {
                     Label("New game", systemImage: "plus.circle.fill")
                 }

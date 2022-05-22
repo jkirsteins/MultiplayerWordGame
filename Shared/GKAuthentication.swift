@@ -15,7 +15,7 @@ enum GKAuthState {
     case failed(error: Error)
 }
 
-struct GKAuthentication<Content: View>: View {
+struct GKAuthentication_Internal<Content: View>: View {
     
     @State var state: GKAuthState = .signingIn
     
@@ -34,7 +34,13 @@ struct GKAuthentication<Content: View>: View {
                 return
             }
             
-            GKAccessPoint.shared.isActive = localPlayer.isAuthenticated
+            /* The auth handler can be called multiple times.
+             If we keep setting access point to active, it will
+             keep doing the presentation animation. */
+            if GKAccessPoint.shared.isActive == false {
+                GKAccessPoint.shared.isActive = localPlayer.isAuthenticated
+                GKAccessPoint.shared.location = .bottomLeading
+            }
             
             switch(localPlayer.isAuthenticated) {
             case true:
@@ -69,7 +75,10 @@ struct GKAuthentication<Content: View>: View {
         .padding()
         .frame(minWidth: 300, minHeight: 300)
         .onAppear {
-            authenticateUser()
+            guard GKLocalPlayer.local.isAuthenticated else {
+                authenticateUser()
+                return
+            }
         }
     }
 }

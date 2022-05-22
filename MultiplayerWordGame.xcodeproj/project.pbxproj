@@ -24,6 +24,42 @@
 		E7CFCE48283AB3210019AAF5 /* MatchThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE46283AB3210019AAF5 /* MatchThumbnail.swift */; };
 		E7CFCE4A283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE49283AB6190019AAF5 /* MainMenuButtonStyle.swift */; };
 		E7CFCE4B283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE49283AB6190019AAF5 /* MainMenuButtonStyle.swift */; };
+		E7CFCE80283ABC220019AAF5 /* GKMatchmakerView+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE54283ABC220019AAF5 /* GKMatchmakerView+macOS.swift */; };
+		E7CFCE82283ABC220019AAF5 /* MatchmakerViewController+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE55283ABC220019AAF5 /* MatchmakerViewController+macOS.swift */; };
+		E7CFCE84283ABC220019AAF5 /* GKTurnBasedMatchmakerView+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE57283ABC220019AAF5 /* GKTurnBasedMatchmakerView+macOS.swift */; };
+		E7CFCE86283ABC220019AAF5 /* TurnBasedMatchmakerViewController+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE58283ABC220019AAF5 /* TurnBasedMatchmakerViewController+macOS.swift */; };
+		E7CFCE88283ABC220019AAF5 /* InviteViewController+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE5A283ABC220019AAF5 /* InviteViewController+macOS.swift */; };
+		E7CFCE8A283ABC220019AAF5 /* GKInviteView+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE5B283ABC220019AAF5 /* GKInviteView+macOS.swift */; };
+		E7CFCE8C283ABC220019AAF5 /* GKGameCenterView+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE5C283ABC220019AAF5 /* GKGameCenterView+macOS.swift */; };
+		E7CFCE8E283ABC220019AAF5 /* LoadingViewController+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE5D283ABC220019AAF5 /* LoadingViewController+macOS.swift */; };
+		E7CFCE90283ABC220019AAF5 /* GKAuthenticationViewController+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE5F283ABC220019AAF5 /* GKAuthenticationViewController+macOS.swift */; };
+		E7CFCE92283ABC220019AAF5 /* GKAuthenticationView+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE60283ABC220019AAF5 /* GKAuthenticationView+macOS.swift */; };
+		E7CFCE94283ABC220019AAF5 /* GKAuthentication+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE61283ABC220019AAF5 /* GKAuthentication+macOS.swift */; };
+		E7CFCE96283ABC220019AAF5 /* NSViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE62283ABC220019AAF5 /* NSViewController+Child.swift */; };
+		E7CFCE97283ABC220019AAF5 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE65283ABC220019AAF5 /* Invite.swift */; };
+		E7CFCE98283ABC220019AAF5 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE65283ABC220019AAF5 /* Invite.swift */; };
+		E7CFCE99283ABC220019AAF5 /* GKMatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE66283ABC220019AAF5 /* GKMatchManager.swift */; };
+		E7CFCE9A283ABC220019AAF5 /* GKMatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE66283ABC220019AAF5 /* GKMatchManager.swift */; };
+		E7CFCE9B283ABC220019AAF5 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE67283ABC220019AAF5 /* Match.swift */; };
+		E7CFCE9C283ABC220019AAF5 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE67283ABC220019AAF5 /* Match.swift */; };
+		E7CFCE9D283ABC220019AAF5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE68283ABC220019AAF5 /* OSLog.swift */; };
+		E7CFCE9E283ABC220019AAF5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE68283ABC220019AAF5 /* OSLog.swift */; };
+		E7CFCE9F283ABC220019AAF5 /* GKAuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE6A283ABC220019AAF5 /* GKAuthenticationError.swift */; };
+		E7CFCEA0283ABC220019AAF5 /* GKAuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE6A283ABC220019AAF5 /* GKAuthenticationError.swift */; };
+		E7CFCEA1283ABC220019AAF5 /* GKGameCenterView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE6C283ABC220019AAF5 /* GKGameCenterView+iOS.swift */; };
+		E7CFCEA3283ABC220019AAF5 /* MatchmakerViewController+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE6E283ABC220019AAF5 /* MatchmakerViewController+iOS.swift */; };
+		E7CFCEA5283ABC220019AAF5 /* GKMatchmakerView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE6F283ABC220019AAF5 /* GKMatchmakerView+iOS.swift */; };
+		E7CFCEA7283ABC220019AAF5 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE70283ABC220019AAF5 /* UIViewController+Child.swift */; };
+		E7CFCEA9283ABC220019AAF5 /* TurnBasedMatchmakerViewController+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE72283ABC220019AAF5 /* TurnBasedMatchmakerViewController+iOS.swift */; };
+		E7CFCEAB283ABC220019AAF5 /* GKTurnBasedMatchmakerView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE73283ABC220019AAF5 /* GKTurnBasedMatchmakerView+iOS.swift */; };
+		E7CFCEAD283ABC220019AAF5 /* GKInviteView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE75283ABC220019AAF5 /* GKInviteView+iOS.swift */; };
+		E7CFCEAF283ABC220019AAF5 /* InviteViewController+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE76283ABC220019AAF5 /* InviteViewController+iOS.swift */; };
+		E7CFCEB1283ABC220019AAF5 /* LoadingViewController+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE77283ABC220019AAF5 /* LoadingViewController+iOS.swift */; };
+		E7CFCEB3283ABC220019AAF5 /* GKAuthenticationViewController+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE79283ABC220019AAF5 /* GKAuthenticationViewController+iOS.swift */; };
+		E7CFCEB5283ABC220019AAF5 /* GKAuthenticationView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE7A283ABC220019AAF5 /* GKAuthenticationView+iOS.swift */; };
+		E7CFCEB7283ABC220019AAF5 /* GKAuthentication+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE7B283ABC220019AAF5 /* GKAuthentication+iOS.swift */; };
+		E7CFCEB9283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE7E283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift */; };
+		E7CFCEBA283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE7E283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift */; };
 		E7DDE1FB2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FC2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FD2822CFAB0033B3A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */; };
@@ -103,6 +139,36 @@
 		E7CFCE43283AB24D0019AAF5 /* MainMenuMatchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuMatchList.swift; sourceTree = "<group>"; };
 		E7CFCE46283AB3210019AAF5 /* MatchThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchThumbnail.swift; sourceTree = "<group>"; };
 		E7CFCE49283AB6190019AAF5 /* MainMenuButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuButtonStyle.swift; sourceTree = "<group>"; };
+		E7CFCE54283ABC220019AAF5 /* GKMatchmakerView+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKMatchmakerView+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE55283ABC220019AAF5 /* MatchmakerViewController+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MatchmakerViewController+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE57283ABC220019AAF5 /* GKTurnBasedMatchmakerView+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKTurnBasedMatchmakerView+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE58283ABC220019AAF5 /* TurnBasedMatchmakerViewController+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TurnBasedMatchmakerViewController+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE5A283ABC220019AAF5 /* InviteViewController+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InviteViewController+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE5B283ABC220019AAF5 /* GKInviteView+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKInviteView+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE5C283ABC220019AAF5 /* GKGameCenterView+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKGameCenterView+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE5D283ABC220019AAF5 /* LoadingViewController+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoadingViewController+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE5F283ABC220019AAF5 /* GKAuthenticationViewController+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKAuthenticationViewController+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE60283ABC220019AAF5 /* GKAuthenticationView+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKAuthenticationView+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE61283ABC220019AAF5 /* GKAuthentication+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKAuthentication+macOS.swift"; sourceTree = "<group>"; };
+		E7CFCE62283ABC220019AAF5 /* NSViewController+Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Child.swift"; sourceTree = "<group>"; };
+		E7CFCE65283ABC220019AAF5 /* Invite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
+		E7CFCE66283ABC220019AAF5 /* GKMatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKMatchManager.swift; sourceTree = "<group>"; };
+		E7CFCE67283ABC220019AAF5 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		E7CFCE68283ABC220019AAF5 /* OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		E7CFCE6A283ABC220019AAF5 /* GKAuthenticationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKAuthenticationError.swift; sourceTree = "<group>"; };
+		E7CFCE6C283ABC220019AAF5 /* GKGameCenterView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKGameCenterView+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE6E283ABC220019AAF5 /* MatchmakerViewController+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MatchmakerViewController+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE6F283ABC220019AAF5 /* GKMatchmakerView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKMatchmakerView+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE70283ABC220019AAF5 /* UIViewController+Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
+		E7CFCE72283ABC220019AAF5 /* TurnBasedMatchmakerViewController+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TurnBasedMatchmakerViewController+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE73283ABC220019AAF5 /* GKTurnBasedMatchmakerView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKTurnBasedMatchmakerView+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE75283ABC220019AAF5 /* GKInviteView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKInviteView+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE76283ABC220019AAF5 /* InviteViewController+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InviteViewController+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE77283ABC220019AAF5 /* LoadingViewController+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoadingViewController+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE79283ABC220019AAF5 /* GKAuthenticationViewController+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKAuthenticationViewController+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE7A283ABC220019AAF5 /* GKAuthenticationView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKAuthenticationView+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE7B283ABC220019AAF5 /* GKAuthentication+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GKAuthentication+iOS.swift"; sourceTree = "<group>"; };
+		E7CFCE7E283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TurnBasedMatchmakerViewController+tvOS.swift"; sourceTree = "<group>"; };
 		E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerWordGameApp.swift; sourceTree = "<group>"; };
 		E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E7DDE1ED2822CFAB0033B3A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,10 +249,168 @@
 			path = Environment;
 			sourceTree = "<group>";
 		};
+		E7CFCE51283ABC220019AAF5 /* GameKitUI */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE52283ABC220019AAF5 /* macOS */,
+				E7CFCE63283ABC220019AAF5 /* Shared */,
+				E7CFCE6B283ABC220019AAF5 /* iOS */,
+				E7CFCE7C283ABC220019AAF5 /* tvOS */,
+			);
+			path = GameKitUI;
+			sourceTree = "<group>";
+		};
+		E7CFCE52283ABC220019AAF5 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE53283ABC220019AAF5 /* Matchmaker */,
+				E7CFCE56283ABC220019AAF5 /* TurnBasedMatchmaker */,
+				E7CFCE59283ABC220019AAF5 /* Invite */,
+				E7CFCE5C283ABC220019AAF5 /* GKGameCenterView+macOS.swift */,
+				E7CFCE5D283ABC220019AAF5 /* LoadingViewController+macOS.swift */,
+				E7CFCE5E283ABC220019AAF5 /* Authentication */,
+				E7CFCE62283ABC220019AAF5 /* NSViewController+Child.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		E7CFCE53283ABC220019AAF5 /* Matchmaker */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE54283ABC220019AAF5 /* GKMatchmakerView+macOS.swift */,
+				E7CFCE55283ABC220019AAF5 /* MatchmakerViewController+macOS.swift */,
+			);
+			path = Matchmaker;
+			sourceTree = "<group>";
+		};
+		E7CFCE56283ABC220019AAF5 /* TurnBasedMatchmaker */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE57283ABC220019AAF5 /* GKTurnBasedMatchmakerView+macOS.swift */,
+				E7CFCE58283ABC220019AAF5 /* TurnBasedMatchmakerViewController+macOS.swift */,
+			);
+			path = TurnBasedMatchmaker;
+			sourceTree = "<group>";
+		};
+		E7CFCE59283ABC220019AAF5 /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE5A283ABC220019AAF5 /* InviteViewController+macOS.swift */,
+				E7CFCE5B283ABC220019AAF5 /* GKInviteView+macOS.swift */,
+			);
+			path = Invite;
+			sourceTree = "<group>";
+		};
+		E7CFCE5E283ABC220019AAF5 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE5F283ABC220019AAF5 /* GKAuthenticationViewController+macOS.swift */,
+				E7CFCE60283ABC220019AAF5 /* GKAuthenticationView+macOS.swift */,
+				E7CFCE61283ABC220019AAF5 /* GKAuthentication+macOS.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		E7CFCE63283ABC220019AAF5 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE64283ABC220019AAF5 /* Manager */,
+				E7CFCE68283ABC220019AAF5 /* OSLog.swift */,
+				E7CFCE69283ABC220019AAF5 /* Authentication */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		E7CFCE64283ABC220019AAF5 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE65283ABC220019AAF5 /* Invite.swift */,
+				E7CFCE66283ABC220019AAF5 /* GKMatchManager.swift */,
+				E7CFCE67283ABC220019AAF5 /* Match.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		E7CFCE69283ABC220019AAF5 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE6A283ABC220019AAF5 /* GKAuthenticationError.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		E7CFCE6B283ABC220019AAF5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE6C283ABC220019AAF5 /* GKGameCenterView+iOS.swift */,
+				E7CFCE6D283ABC220019AAF5 /* Matchmaker */,
+				E7CFCE70283ABC220019AAF5 /* UIViewController+Child.swift */,
+				E7CFCE71283ABC220019AAF5 /* TurnBasedMatchmaker */,
+				E7CFCE74283ABC220019AAF5 /* Invite */,
+				E7CFCE77283ABC220019AAF5 /* LoadingViewController+iOS.swift */,
+				E7CFCE78283ABC220019AAF5 /* Authentication */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		E7CFCE6D283ABC220019AAF5 /* Matchmaker */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE6E283ABC220019AAF5 /* MatchmakerViewController+iOS.swift */,
+				E7CFCE6F283ABC220019AAF5 /* GKMatchmakerView+iOS.swift */,
+			);
+			path = Matchmaker;
+			sourceTree = "<group>";
+		};
+		E7CFCE71283ABC220019AAF5 /* TurnBasedMatchmaker */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE72283ABC220019AAF5 /* TurnBasedMatchmakerViewController+iOS.swift */,
+				E7CFCE73283ABC220019AAF5 /* GKTurnBasedMatchmakerView+iOS.swift */,
+			);
+			path = TurnBasedMatchmaker;
+			sourceTree = "<group>";
+		};
+		E7CFCE74283ABC220019AAF5 /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE75283ABC220019AAF5 /* GKInviteView+iOS.swift */,
+				E7CFCE76283ABC220019AAF5 /* InviteViewController+iOS.swift */,
+			);
+			path = Invite;
+			sourceTree = "<group>";
+		};
+		E7CFCE78283ABC220019AAF5 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE79283ABC220019AAF5 /* GKAuthenticationViewController+iOS.swift */,
+				E7CFCE7A283ABC220019AAF5 /* GKAuthenticationView+iOS.swift */,
+				E7CFCE7B283ABC220019AAF5 /* GKAuthentication+iOS.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		E7CFCE7C283ABC220019AAF5 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE7D283ABC220019AAF5 /* TurnBasedMatchmaker */,
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		E7CFCE7D283ABC220019AAF5 /* TurnBasedMatchmaker */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE7E283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift */,
+			);
+			path = TurnBasedMatchmaker;
+			sourceTree = "<group>";
+		};
 		E7DDE1E52822CFA90033B3A1 = {
 			isa = PBXGroup;
 			children = (
 				E7DDE21B2822D8270033B3A1 /* MultiplayerWordGame (iOS).entitlements */,
+				E7CFCE51283ABC220019AAF5 /* GameKitUI */,
 				E7DDE1EA2822CFA90033B3A1 /* Shared */,
 				E7DDE1F92822CFAB0033B3A1 /* macOS */,
 				E7DDE1F32822CFAB0033B3A1 /* Products */,
@@ -330,6 +554,8 @@
 			dependencies = (
 			);
 			name = "MultiplayerWordGame (iOS)";
+			packageProductDependencies = (
+			);
 			productName = "MultiplayerWordGame (iOS)";
 			productReference = E7DDE1F22822CFAB0033B3A1 /* MultiplayerWordGame.app */;
 			productType = "com.apple.product-type.application";
@@ -347,6 +573,8 @@
 			dependencies = (
 			);
 			name = "MultiplayerWordGame (macOS)";
+			packageProductDependencies = (
+			);
 			productName = "MultiplayerWordGame (macOS)";
 			productReference = E7DDE1F82822CFAB0033B3A1 /* MultiplayerWordGame.app */;
 			productType = "com.apple.product-type.application";
@@ -378,6 +606,8 @@
 				Base,
 			);
 			mainGroup = E7DDE1E52822CFA90033B3A1;
+			packageReferences = (
+			);
 			productRefGroup = E7DDE1F32822CFAB0033B3A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -414,44 +644,62 @@
 			files = (
 				E7DDE1FD2822CFAB0033B3A1 /* ContentView.swift in Sources */,
 				E7DDE1FB2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */,
+				E7CFCEAD283ABC220019AAF5 /* GKInviteView+iOS.swift in Sources */,
 				E7F299362836C97E005792DA /* TestViews.swift in Sources */,
 				E7F299242836C97E005792DA /* BlinkViewModifier.swift in Sources */,
 				E7F299522836C97F005792DA /* GameState.placing.swift in Sources */,
 				E7F299342836C97E005792DA /* Letter.swift in Sources */,
+				E7CFCE9B283ABC220019AAF5 /* Match.swift in Sources */,
 				E7F299222836C97E005792DA /* RevealModifier.swift in Sources */,
 				E7CFCE3E283AB1F20019AAF5 /* EnvironmentValues.swift in Sources */,
 				E7F299422836C97F005792DA /* LetterDispenser.swift in Sources */,
 				E7F299442836C97F005792DA /* IntExtensions.swift in Sources */,
+				E7CFCEA1283ABC220019AAF5 /* GKGameCenterView+iOS.swift in Sources */,
 				E7346322283841F300265F8F /* MainMenu.swift in Sources */,
 				E7F299322836C97E005792DA /* Hand.swift in Sources */,
 				E7DDE2132822D1800033B3A1 /* Board.swift in Sources */,
+				E7CFCE9D283ABC220019AAF5 /* OSLog.swift in Sources */,
 				E7DDE2162822D5C50033B3A1 /* GKAuthentication.swift in Sources */,
 				E7F299402836C97F005792DA /* TestFile.swift in Sources */,
 				E7F2994E2836C97F005792DA /* TileBeingPlaced.swift in Sources */,
+				E7CFCEB5283ABC220019AAF5 /* GKAuthenticationView+iOS.swift in Sources */,
 				E7F2994A2836C97F005792DA /* LetterTileBase.swift in Sources */,
+				E7CFCEA9283ABC220019AAF5 /* TurnBasedMatchmakerViewController+iOS.swift in Sources */,
+				E7CFCEA3283ABC220019AAF5 /* MatchmakerViewController+iOS.swift in Sources */,
 				E7CFCE44283AB24D0019AAF5 /* MainMenuMatchList.swift in Sources */,
 				E7F2992E2836C97E005792DA /* CharacterModel.swift in Sources */,
+				E7CFCEAB283ABC220019AAF5 /* GKTurnBasedMatchmakerView+iOS.swift in Sources */,
 				E7341BEA2822DC9800AFF116 /* AppRoot.swift in Sources */,
+				E7CFCEA7283ABC220019AAF5 /* UIViewController+Child.swift in Sources */,
 				E7F299382836C97F005792DA /* Game.swift in Sources */,
 				E7F299462836C97F005792DA /* GameState.swift in Sources */,
 				E7CFCE41283AB23B0019AAF5 /* MatchLoader.swift in Sources */,
 				E7F299262836C97E005792DA /* TileModel.swift in Sources */,
+				E7CFCEB3283ABC220019AAF5 /* GKAuthenticationViewController+iOS.swift in Sources */,
 				E7CFCE3B283AB1DA0019AAF5 /* PleaseWait.swift in Sources */,
 				E7F2993E2836C97F005792DA /* GameState.swapping.swift in Sources */,
 				E7F299502836C97F005792DA /* Player.swift in Sources */,
+				E7CFCEB1283ABC220019AAF5 /* LoadingViewController+iOS.swift in Sources */,
 				E7F299202836C97E005792DA /* AnimationCompletionObserverModifier.swift in Sources */,
 				E7CFCE47283AB3210019AAF5 /* MatchThumbnail.swift in Sources */,
 				E7F299282836C97E005792DA /* LocaleExtensions.swift in Sources */,
+				E7CFCEB7283ABC220019AAF5 /* GKAuthentication+iOS.swift in Sources */,
+				E7CFCE9F283ABC220019AAF5 /* GKAuthenticationError.swift in Sources */,
+				E7CFCEB9283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift in Sources */,
 				E7DDE2102822D1660033B3A1 /* Tile.swift in Sources */,
 				E7F2993A2836C97F005792DA /* ArrayExtensions.swift in Sources */,
 				E7F2994C2836C97F005792DA /* FlippableTileInHand.swift in Sources */,
 				E7F2992C2836C97E005792DA /* WordTree.swift in Sources */,
 				E7F2993C2836C97F005792DA /* BoardModel.swift in Sources */,
+				E7CFCEA5283ABC220019AAF5 /* GKMatchmakerView+iOS.swift in Sources */,
 				E7CFCE4A283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */,
+				E7CFCEAF283ABC220019AAF5 /* InviteViewController+iOS.swift in Sources */,
 				E7F299302836C97E005792DA /* WordTreeTests.swift in Sources */,
 				E7DDE20D2822D1500033B3A1 /* ColorExtensions.swift in Sources */,
+				E7CFCE97283ABC220019AAF5 /* Invite.swift in Sources */,
 				E7F2992A2836C97E005792DA /* WordModel.swift in Sources */,
 				E7F299482836C97F005792DA /* TileInHand.swift in Sources */,
+				E7CFCE99283ABC220019AAF5 /* GKMatchManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,21 +709,28 @@
 			files = (
 				E7DDE1FE2822CFAB0033B3A1 /* ContentView.swift in Sources */,
 				E7DDE1FC2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */,
+				E7CFCE96283ABC220019AAF5 /* NSViewController+Child.swift in Sources */,
 				E7F299372836C97F005792DA /* TestViews.swift in Sources */,
 				E7F299252836C97E005792DA /* BlinkViewModifier.swift in Sources */,
 				E7F299532836C97F005792DA /* GameState.placing.swift in Sources */,
+				E7CFCE8E283ABC220019AAF5 /* LoadingViewController+macOS.swift in Sources */,
 				E7F299352836C97E005792DA /* Letter.swift in Sources */,
+				E7CFCE9C283ABC220019AAF5 /* Match.swift in Sources */,
 				E7F299232836C97E005792DA /* RevealModifier.swift in Sources */,
 				E7CFCE3F283AB1F20019AAF5 /* EnvironmentValues.swift in Sources */,
 				E7F299432836C97F005792DA /* LetterDispenser.swift in Sources */,
+				E7CFCE92283ABC220019AAF5 /* GKAuthenticationView+macOS.swift in Sources */,
+				E7CFCE8A283ABC220019AAF5 /* GKInviteView+macOS.swift in Sources */,
 				E7F299452836C97F005792DA /* IntExtensions.swift in Sources */,
 				E7346323283841F300265F8F /* MainMenu.swift in Sources */,
 				E7F299332836C97E005792DA /* Hand.swift in Sources */,
 				E7DDE2142822D1800033B3A1 /* Board.swift in Sources */,
+				E7CFCE9E283ABC220019AAF5 /* OSLog.swift in Sources */,
 				E7DDE2172822D5C50033B3A1 /* GKAuthentication.swift in Sources */,
 				E7F299412836C97F005792DA /* TestFile.swift in Sources */,
 				E7F2994F2836C97F005792DA /* TileBeingPlaced.swift in Sources */,
 				E7F2994B2836C97F005792DA /* LetterTileBase.swift in Sources */,
+				E7CFCE82283ABC220019AAF5 /* MatchmakerViewController+macOS.swift in Sources */,
 				E7CFCE45283AB24D0019AAF5 /* MainMenuMatchList.swift in Sources */,
 				E7F2992F2836C97E005792DA /* CharacterModel.swift in Sources */,
 				E7341BEB2822DC9800AFF116 /* AppRoot.swift in Sources */,
@@ -483,22 +738,33 @@
 				E7F299472836C97F005792DA /* GameState.swift in Sources */,
 				E7CFCE42283AB23B0019AAF5 /* MatchLoader.swift in Sources */,
 				E7F299272836C97E005792DA /* TileModel.swift in Sources */,
+				E7CFCE84283ABC220019AAF5 /* GKTurnBasedMatchmakerView+macOS.swift in Sources */,
 				E7CFCE3C283AB1DA0019AAF5 /* PleaseWait.swift in Sources */,
 				E7F2993F2836C97F005792DA /* GameState.swapping.swift in Sources */,
 				E7F299512836C97F005792DA /* Player.swift in Sources */,
 				E7F299212836C97E005792DA /* AnimationCompletionObserverModifier.swift in Sources */,
 				E7CFCE48283AB3210019AAF5 /* MatchThumbnail.swift in Sources */,
 				E7F299292836C97E005792DA /* LocaleExtensions.swift in Sources */,
+				E7CFCE8C283ABC220019AAF5 /* GKGameCenterView+macOS.swift in Sources */,
+				E7CFCEA0283ABC220019AAF5 /* GKAuthenticationError.swift in Sources */,
+				E7CFCEBA283ABC220019AAF5 /* TurnBasedMatchmakerViewController+tvOS.swift in Sources */,
+				E7CFCE94283ABC220019AAF5 /* GKAuthentication+macOS.swift in Sources */,
+				E7CFCE90283ABC220019AAF5 /* GKAuthenticationViewController+macOS.swift in Sources */,
 				E7DDE2112822D1660033B3A1 /* Tile.swift in Sources */,
 				E7F2993B2836C97F005792DA /* ArrayExtensions.swift in Sources */,
 				E7F2994D2836C97F005792DA /* FlippableTileInHand.swift in Sources */,
 				E7F2992D2836C97E005792DA /* WordTree.swift in Sources */,
 				E7F2993D2836C97F005792DA /* BoardModel.swift in Sources */,
 				E7CFCE4B283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */,
+				E7CFCE80283ABC220019AAF5 /* GKMatchmakerView+macOS.swift in Sources */,
 				E7F299312836C97E005792DA /* WordTreeTests.swift in Sources */,
 				E7DDE20E2822D1500033B3A1 /* ColorExtensions.swift in Sources */,
+				E7CFCE98283ABC220019AAF5 /* Invite.swift in Sources */,
 				E7F2992B2836C97E005792DA /* WordModel.swift in Sources */,
+				E7CFCE88283ABC220019AAF5 /* InviteViewController+macOS.swift in Sources */,
+				E7CFCE86283ABC220019AAF5 /* TurnBasedMatchmakerViewController+macOS.swift in Sources */,
 				E7F299492836C97F005792DA /* TileInHand.swift in Sources */,
+				E7CFCE9A283ABC220019AAF5 /* GKMatchManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
