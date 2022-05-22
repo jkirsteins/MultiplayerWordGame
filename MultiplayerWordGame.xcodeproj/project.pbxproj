@@ -12,6 +12,18 @@
 		E7341BEB2822DC9800AFF116 /* AppRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7341BE92822DC9800AFF116 /* AppRoot.swift */; };
 		E7346322283841F300265F8F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7346321283841F300265F8F /* MainMenu.swift */; };
 		E7346323283841F300265F8F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7346321283841F300265F8F /* MainMenu.swift */; };
+		E7CFCE3B283AB1DA0019AAF5 /* PleaseWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE3A283AB1DA0019AAF5 /* PleaseWait.swift */; };
+		E7CFCE3C283AB1DA0019AAF5 /* PleaseWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE3A283AB1DA0019AAF5 /* PleaseWait.swift */; };
+		E7CFCE3E283AB1F20019AAF5 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE3D283AB1F10019AAF5 /* EnvironmentValues.swift */; };
+		E7CFCE3F283AB1F20019AAF5 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE3D283AB1F10019AAF5 /* EnvironmentValues.swift */; };
+		E7CFCE41283AB23B0019AAF5 /* MatchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE40283AB23B0019AAF5 /* MatchLoader.swift */; };
+		E7CFCE42283AB23B0019AAF5 /* MatchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE40283AB23B0019AAF5 /* MatchLoader.swift */; };
+		E7CFCE44283AB24D0019AAF5 /* MainMenuMatchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE43283AB24D0019AAF5 /* MainMenuMatchList.swift */; };
+		E7CFCE45283AB24D0019AAF5 /* MainMenuMatchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE43283AB24D0019AAF5 /* MainMenuMatchList.swift */; };
+		E7CFCE47283AB3210019AAF5 /* MatchThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE46283AB3210019AAF5 /* MatchThumbnail.swift */; };
+		E7CFCE48283AB3210019AAF5 /* MatchThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE46283AB3210019AAF5 /* MatchThumbnail.swift */; };
+		E7CFCE4A283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE49283AB6190019AAF5 /* MainMenuButtonStyle.swift */; };
+		E7CFCE4B283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CFCE49283AB6190019AAF5 /* MainMenuButtonStyle.swift */; };
 		E7DDE1FB2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FC2822CFAB0033B3A1 /* MultiplayerWordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */; };
 		E7DDE1FD2822CFAB0033B3A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */; };
@@ -85,6 +97,12 @@
 		E7341BE72822DC2E00AFF116 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		E7341BE92822DC9800AFF116 /* AppRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoot.swift; sourceTree = "<group>"; };
 		E7346321283841F300265F8F /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		E7CFCE3A283AB1DA0019AAF5 /* PleaseWait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseWait.swift; sourceTree = "<group>"; };
+		E7CFCE3D283AB1F10019AAF5 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
+		E7CFCE40283AB23B0019AAF5 /* MatchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchLoader.swift; sourceTree = "<group>"; };
+		E7CFCE43283AB24D0019AAF5 /* MainMenuMatchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuMatchList.swift; sourceTree = "<group>"; };
+		E7CFCE46283AB3210019AAF5 /* MatchThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchThumbnail.swift; sourceTree = "<group>"; };
+		E7CFCE49283AB6190019AAF5 /* MainMenuButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuButtonStyle.swift; sourceTree = "<group>"; };
 		E7DDE1EB2822CFA90033B3A1 /* MultiplayerWordGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerWordGameApp.swift; sourceTree = "<group>"; };
 		E7DDE1EC2822CFA90033B3A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E7DDE1ED2822CFAB0033B3A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,8 +168,19 @@
 			isa = PBXGroup;
 			children = (
 				E7346321283841F300265F8F /* MainMenu.swift */,
+				E7CFCE43283AB24D0019AAF5 /* MainMenuMatchList.swift */,
+				E7CFCE46283AB3210019AAF5 /* MatchThumbnail.swift */,
+				E7CFCE49283AB6190019AAF5 /* MainMenuButtonStyle.swift */,
 			);
 			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		E7CFCE39283AB1C50019AAF5 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				E7CFCE3D283AB1F10019AAF5 /* EnvironmentValues.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		E7DDE1E52822CFA90033B3A1 = {
@@ -168,6 +197,7 @@
 		E7DDE1EA2822CFA90033B3A1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E7CFCE39283AB1C50019AAF5 /* Environment */,
 				E7F2990E2836C97E005792DA /* ArrayExtensions.swift */,
 				E7F298FD2836C97E005792DA /* Assets.xcassets */,
 				E7F299142836C97E005792DA /* Extensions */,
@@ -278,6 +308,8 @@
 				E7F299192836C97E005792DA /* LetterTileBase.swift */,
 				E7F2991A2836C97E005792DA /* FlippableTileInHand.swift */,
 				E7F2991B2836C97E005792DA /* TileBeingPlaced.swift */,
+				E7CFCE3A283AB1DA0019AAF5 /* PleaseWait.swift */,
+				E7CFCE40283AB23B0019AAF5 /* MatchLoader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,6 +419,7 @@
 				E7F299522836C97F005792DA /* GameState.placing.swift in Sources */,
 				E7F299342836C97E005792DA /* Letter.swift in Sources */,
 				E7F299222836C97E005792DA /* RevealModifier.swift in Sources */,
+				E7CFCE3E283AB1F20019AAF5 /* EnvironmentValues.swift in Sources */,
 				E7F299422836C97F005792DA /* LetterDispenser.swift in Sources */,
 				E7F299442836C97F005792DA /* IntExtensions.swift in Sources */,
 				E7346322283841F300265F8F /* MainMenu.swift in Sources */,
@@ -396,20 +429,25 @@
 				E7F299402836C97F005792DA /* TestFile.swift in Sources */,
 				E7F2994E2836C97F005792DA /* TileBeingPlaced.swift in Sources */,
 				E7F2994A2836C97F005792DA /* LetterTileBase.swift in Sources */,
+				E7CFCE44283AB24D0019AAF5 /* MainMenuMatchList.swift in Sources */,
 				E7F2992E2836C97E005792DA /* CharacterModel.swift in Sources */,
 				E7341BEA2822DC9800AFF116 /* AppRoot.swift in Sources */,
 				E7F299382836C97F005792DA /* Game.swift in Sources */,
 				E7F299462836C97F005792DA /* GameState.swift in Sources */,
+				E7CFCE41283AB23B0019AAF5 /* MatchLoader.swift in Sources */,
 				E7F299262836C97E005792DA /* TileModel.swift in Sources */,
+				E7CFCE3B283AB1DA0019AAF5 /* PleaseWait.swift in Sources */,
 				E7F2993E2836C97F005792DA /* GameState.swapping.swift in Sources */,
 				E7F299502836C97F005792DA /* Player.swift in Sources */,
 				E7F299202836C97E005792DA /* AnimationCompletionObserverModifier.swift in Sources */,
+				E7CFCE47283AB3210019AAF5 /* MatchThumbnail.swift in Sources */,
 				E7F299282836C97E005792DA /* LocaleExtensions.swift in Sources */,
 				E7DDE2102822D1660033B3A1 /* Tile.swift in Sources */,
 				E7F2993A2836C97F005792DA /* ArrayExtensions.swift in Sources */,
 				E7F2994C2836C97F005792DA /* FlippableTileInHand.swift in Sources */,
 				E7F2992C2836C97E005792DA /* WordTree.swift in Sources */,
 				E7F2993C2836C97F005792DA /* BoardModel.swift in Sources */,
+				E7CFCE4A283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */,
 				E7F299302836C97E005792DA /* WordTreeTests.swift in Sources */,
 				E7DDE20D2822D1500033B3A1 /* ColorExtensions.swift in Sources */,
 				E7F2992A2836C97E005792DA /* WordModel.swift in Sources */,
@@ -428,6 +466,7 @@
 				E7F299532836C97F005792DA /* GameState.placing.swift in Sources */,
 				E7F299352836C97E005792DA /* Letter.swift in Sources */,
 				E7F299232836C97E005792DA /* RevealModifier.swift in Sources */,
+				E7CFCE3F283AB1F20019AAF5 /* EnvironmentValues.swift in Sources */,
 				E7F299432836C97F005792DA /* LetterDispenser.swift in Sources */,
 				E7F299452836C97F005792DA /* IntExtensions.swift in Sources */,
 				E7346323283841F300265F8F /* MainMenu.swift in Sources */,
@@ -437,20 +476,25 @@
 				E7F299412836C97F005792DA /* TestFile.swift in Sources */,
 				E7F2994F2836C97F005792DA /* TileBeingPlaced.swift in Sources */,
 				E7F2994B2836C97F005792DA /* LetterTileBase.swift in Sources */,
+				E7CFCE45283AB24D0019AAF5 /* MainMenuMatchList.swift in Sources */,
 				E7F2992F2836C97E005792DA /* CharacterModel.swift in Sources */,
 				E7341BEB2822DC9800AFF116 /* AppRoot.swift in Sources */,
 				E7F299392836C97F005792DA /* Game.swift in Sources */,
 				E7F299472836C97F005792DA /* GameState.swift in Sources */,
+				E7CFCE42283AB23B0019AAF5 /* MatchLoader.swift in Sources */,
 				E7F299272836C97E005792DA /* TileModel.swift in Sources */,
+				E7CFCE3C283AB1DA0019AAF5 /* PleaseWait.swift in Sources */,
 				E7F2993F2836C97F005792DA /* GameState.swapping.swift in Sources */,
 				E7F299512836C97F005792DA /* Player.swift in Sources */,
 				E7F299212836C97E005792DA /* AnimationCompletionObserverModifier.swift in Sources */,
+				E7CFCE48283AB3210019AAF5 /* MatchThumbnail.swift in Sources */,
 				E7F299292836C97E005792DA /* LocaleExtensions.swift in Sources */,
 				E7DDE2112822D1660033B3A1 /* Tile.swift in Sources */,
 				E7F2993B2836C97F005792DA /* ArrayExtensions.swift in Sources */,
 				E7F2994D2836C97F005792DA /* FlippableTileInHand.swift in Sources */,
 				E7F2992D2836C97E005792DA /* WordTree.swift in Sources */,
 				E7F2993D2836C97F005792DA /* BoardModel.swift in Sources */,
+				E7CFCE4B283AB6190019AAF5 /* MainMenuButtonStyle.swift in Sources */,
 				E7F299312836C97E005792DA /* WordTreeTests.swift in Sources */,
 				E7DDE20E2822D1500033B3A1 /* ColorExtensions.swift in Sources */,
 				E7F2992B2836C97E005792DA /* WordModel.swift in Sources */,
