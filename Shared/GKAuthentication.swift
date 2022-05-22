@@ -51,7 +51,7 @@ struct GKAuthentication<Content: View>: View {
             case .signedIn:
                 content
             case .signingIn:
-                Text("Signing in...")
+                PleaseWait("Signing in...")
             case .signedOut:
                 VStack {
                     Text("Not logged in").font(.largeTitle)
