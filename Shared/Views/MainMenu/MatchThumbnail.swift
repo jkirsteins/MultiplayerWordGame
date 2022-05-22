@@ -24,7 +24,7 @@ struct MatchThumbnail: View {
             .frame(minWidth: 150, minHeight: 150)
             .frame(maxWidth: 200)
             .onTapGesture {
-                appState.wrappedValue = .game
+                appState.wrappedValue = .game(match: match)
             }
     }
 }

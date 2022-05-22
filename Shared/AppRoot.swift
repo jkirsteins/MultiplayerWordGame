@@ -7,13 +7,12 @@
 
 import SwiftUI
 import GameKit
-import GameKitUI
 
 enum AppState {
     case unknown
     case menu
     case creatingMatch
-    case game
+    case game(match: GKTurnBasedMatch)
 }
 
 struct AppRoot : View {
@@ -70,8 +69,9 @@ struct AppRoot : View {
             } started: { (match) in
                 print("Match Started")
             }
-        case .game:
+        case .game(let match):
             Game()
+                .environment(\.currentMatch, match)
         }
     }
 }
