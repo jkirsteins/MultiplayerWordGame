@@ -10,14 +10,14 @@ import GameKit
 
 struct MainMenuMatchList: View {
     @Environment(\.currentMatches)
-    var matches: [GKTurnBasedMatch]
+    var matches: [Match]
     
     var body: some View {
         
         if matches.count > 0 {
             ScrollView(.vertical, showsIndicators: true) {
                 LazyVStack(spacing: 16) {
-                    ForEach(matches, id: \.matchID) {
+                    ForEach(matches) {
                         match in
                         
                         MatchThumbnail()

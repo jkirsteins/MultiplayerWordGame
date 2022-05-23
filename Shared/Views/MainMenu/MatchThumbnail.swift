@@ -13,12 +13,12 @@ struct MatchThumbnail: View {
     var appState: Binding<AppState>
     
     @Environment(\.currentMatch)
-    var match: GKTurnBasedMatch
+    var match: Match
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5).fill(.gray)
-            Text(match.matchID)
+            Text(match.id)
         }
             .aspectRatio(1, contentMode: .fit)
             .frame(minWidth: 150, minHeight: 150)

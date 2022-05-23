@@ -14,12 +14,12 @@ extension EnvironmentValues {
         set { self[AppStateKey.self] = newValue }
     }
     
-    var currentMatches: [GKTurnBasedMatch] {
+    var currentMatches: [Match] {
         get { self[CurrentMatchesKey.self] }
         set { self[CurrentMatchesKey.self] = newValue }
     }
     
-    var currentMatch: GKTurnBasedMatch {
+    var currentMatch: Match {
         get { self[CurrentMatchKey.self] }
         set { self[CurrentMatchKey.self] = newValue }
     }
@@ -35,11 +35,11 @@ fileprivate struct AppStateKey: EnvironmentKey {
 }
 
 fileprivate struct CurrentMatchesKey: EnvironmentKey {
-    static let defaultValue: [GKTurnBasedMatch] = []
+    static let defaultValue: [Match] = []
 }
 
 fileprivate struct CurrentMatchKey: EnvironmentKey {
-    static let defaultValue: GKTurnBasedMatch = GKTurnBasedMatch()
+    static let defaultValue: Match = .none
 }
 
 fileprivate struct FatalErrorKey: EnvironmentKey {

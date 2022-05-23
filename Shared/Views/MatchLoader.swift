@@ -11,7 +11,7 @@ import GameKit
 struct MatchLoader<Content: View> : View {
     let content: ()->Content
     
-    @State var matches: [GKTurnBasedMatch]? = nil
+    @State var matches: [Match]? = nil
     
     @Environment(\.fatalErrorBinding)
     var fatalError: Binding<Error?>
@@ -25,7 +25,9 @@ struct MatchLoader<Content: View> : View {
                 .frame(minHeight: 100)
                 .task {
                     do {
-                        self.matches = try await GKTurnBasedMatch.loadMatches()
+                        self.matches = (try await GKTurnBasedMatch.loadMatches()).map {
+                            .partialOnline($0)
+                        }
                     } catch {
                         self.fatalError.wrappedValue = error
                     }

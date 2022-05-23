@@ -25,12 +25,12 @@
 
 import GameKit
 
-public struct Match {
+public struct GKUIMatch {
     public private(set) var gkMatch: GKMatch?
 }
 
-extension Match {
-    public static var zero: Match {
-        return Match()
+extension GKUIMatch {
+    public static var zero: GKUIMatch {
+        return GKUIMatch()
     }
 }

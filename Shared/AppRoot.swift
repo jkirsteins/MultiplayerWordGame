@@ -12,7 +12,7 @@ enum AppState {
     case unknown
     case menu
     case creatingMatch
-    case game(match: GKTurnBasedMatch)
+    case game(match: Match)
 }
 
 struct AppRoot : View {

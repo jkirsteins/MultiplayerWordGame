@@ -23,10 +23,11 @@ struct GamePlayerListPlayer: View {
     }
     
     @Environment(\.currentMatch)
-    var match: GKTurnBasedMatch
+    var match: Match
     
     var isCurrent: Bool {
-        match.currentParticipant == participant
+        false
+//        match.currentParticipant == participant
     }
     
     var isLocal: Bool {
@@ -41,24 +42,83 @@ struct GamePlayerListPlayer: View {
 
 struct GamePlayerList: View {
     @Environment(\.currentMatch)
-    var match: GKTurnBasedMatch
+    var match: Match
     
     var body: some View {
         VStack {
             Text("Players").font(.title)
             Divider()
-            ForEach(match.participants) {
-                part in
-            
-                GamePlayerListPlayer(participant: part)
-            }
+//            ForEach(match.participants) {
+//                part in
+//
+//                GamePlayerListPlayer(participant: part)
+//            }
         }
         .padding()
         .border(.primary)
     }
 }
 
+struct PartialOnlineLoader: View {
+    
+    enum _Error: Error {
+        case noDataFound
+    }
+    
+    @Environment(\.currentMatch)
+    var outerMatch: Match
+    
+    @Environment(\.fatalErrorBinding)
+    var fatalError: Binding<Error?>
+    
+    @State var fullyLoaded: Match? = nil
+    
+    var body: some View {
+        switch(outerMatch) {
+        case .partialOnline(let partial):
+            if let fullyLoaded = fullyLoaded {
+                Text("Fully loaded :-)")
+            } else {
+                PleaseWait("Loading match \(outerMatch.id)...")
+                    .task {
+                        do {
+                            guard
+                                let data = try await partial.loadMatchData()
+                            else {
+                                fatalError.wrappedValue = _Error.noDataFound
+                                return
+                            }
+                            
+                            let matchData = try MatchData(data)
+                            fullyLoaded = .online(partial, matchData)
+                        } catch {
+                            fatalError.wrappedValue = error
+                        }
+                    }
+            }
+        default:
+            Game()
+        }
+    }
+}
+
 struct Game: View {
+    @Environment(\.currentMatch)
+    var match: Match
+    
+    var body: some View {
+        switch(match) {
+        case .none:
+            fatalError()
+        case .local(_), .online(_, _):
+            Game()
+        case .partialOnline(_):
+            PartialOnlineLoader()
+        }
+    }
+}
+
+struct ActiveGame: View {
     @StateObject var state = GameState(15, 15)
     
     var cols: Int { state.cols }
@@ -70,7 +130,7 @@ struct Game: View {
     @State var referenceScale: CGFloat = 1.0
     
     @Environment(\.currentMatch)
-    var match: GKTurnBasedMatch
+    var match: Match
     
     @Environment(\.appState)
     var appState: Binding<AppState>
@@ -103,7 +163,7 @@ struct Game: View {
                             appState.wrappedValue = .menu
                         }
                     }
-                    Text("Match: \(match.matchID)")
+                    Text("Match: \(match.id)")
                     ScrollView([.horizontal, .vertical], showsIndicators: false) {
                         ZStack {
                             
@@ -169,8 +229,7 @@ struct Game: View {
                     rows: rows,
                     cols: cols))
                 .environmentObject(state)
-                .environment(\.player,
-                              Player(index: 0, color: .green))
+                .environment(\.player, .local(PlayerData(index: 0, color: .green)))
                 .debugBorder(.purple)
             }
         }

@@ -105,7 +105,6 @@ class BoardView {
             guard
                 let currentIx = currentIx
             else {
-                print("Cont", currentIx)
                 continue
             }
             

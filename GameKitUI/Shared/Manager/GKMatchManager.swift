@@ -64,7 +64,7 @@ public final class GKMatchManager: NSObject {
     }
     
     private(set) public var localPlayer = CurrentValueSubject<GKLocalPlayer, Never>(GKLocalPlayer.local)
-    private(set) public var match = CurrentValueSubject<Match, Never>(Match.zero)
+    private(set) public var match = CurrentValueSubject<GKUIMatch, Never>(GKUIMatch.zero)
     private(set) public var invite = CurrentValueSubject<Invite, Never>(Invite.zero)
     
     private var canceled: () -> Void = {}
@@ -122,7 +122,7 @@ public final class GKMatchManager: NSObject {
     public func cancel() {
         GKMatchmaker.shared().cancel()
         self.invite.send(Invite.zero)
-        self.match.send(Match.zero)
+        self.match.send(GKUIMatch.zero)
     }
 }
 
@@ -135,7 +135,7 @@ extension GKMatchManager: GKMatchmakerViewControllerDelegate {
             animated: true,
             completion: {
                 os_log("Matchmaking successful!", log: OSLog.matchmaking, type: .info)
-                self.match.send(Match(gkMatch: match))
+                self.match.send(GKUIMatch(gkMatch: match))
                 self.started(match)
                 viewController.remove()
         })
@@ -147,7 +147,7 @@ extension GKMatchManager: GKMatchmakerViewControllerDelegate {
             completion: {
                 os_log("Matchmaking cancelled!", log: OSLog.matchmaking, type: .error)
                 self.invite.send(Invite.zero)
-                self.match.send(Match.zero)
+                self.match.send(GKUIMatch.zero)
                 self.canceled()
                 viewController.remove()
         })
@@ -159,7 +159,7 @@ extension GKMatchManager: GKMatchmakerViewControllerDelegate {
             completion: {
                 os_log("Matchmaking failed: %{public}@", log: OSLog.matchmaking, type: .error, error.localizedDescription)
                 self.invite.send(Invite.zero)
-                self.match.send(Match.zero)
+                self.match.send(GKUIMatch.zero)
                 self.failed(error)
                 viewController.remove()
         })
