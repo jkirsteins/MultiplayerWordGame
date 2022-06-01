@@ -173,7 +173,7 @@ extension GKMatchManager: GKMatchmakerViewControllerDelegate {
     public func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
         viewController.dismiss(self)
         os_log("Matchmaking successful!", log: OSLog.matchmaking, type: .info)
-        self.match.send(Match(gkMatch: match))
+        self.match.send(GKUIMatch(gkMatch: match))
         self.started(match)
     }
     
@@ -181,7 +181,7 @@ extension GKMatchManager: GKMatchmakerViewControllerDelegate {
         viewController.dismiss(self)
         os_log("Matchmaking cancelled!", log: OSLog.matchmaking, type: .error)
         self.invite.send(Invite.zero)
-        self.match.send(Match.zero)
+        self.match.send(GKUIMatch.zero)
         self.canceled()
     }
     
@@ -189,7 +189,7 @@ extension GKMatchManager: GKMatchmakerViewControllerDelegate {
         viewController.dismiss(self)
         os_log("Matchmaking failed: %{public}@", log: OSLog.matchmaking, type: .error, error.localizedDescription)
         self.invite.send(Invite.zero)
-        self.match.send(Match.zero)
+        self.match.send(GKUIMatch.zero)
         self.failed(error)
     }
 }

@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct MainMenuButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled)
+    var enabled: Bool
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
             .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
-            .opacity(configuration.isPressed ? 0.5 : 1)
+            .opacity(!enabled || configuration.isPressed ? 0.5 : 1)
     }
 }
 

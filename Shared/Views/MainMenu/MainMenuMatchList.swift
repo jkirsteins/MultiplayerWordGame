@@ -8,9 +8,36 @@
 import SwiftUI
 import GameKit
 
+class GlobalConfiguration: ObservableObject
+{
+    @Published var onlineAvailable: Bool = false
+}
+
+struct ErrorMessage: View {
+    let message: LocalizedStringKey
+    
+    init(_ message: LocalizedStringKey) {
+        self.message = message
+    }
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Text(message)
+                .foregroundColor(.white)
+                .padding()
+            Spacer()
+        }
+        .background(RoundedRectangle(cornerRadius: 5).fill(.red))
+    }
+}
+
 struct MainMenuMatchList: View {
     @Environment(\.currentMatches)
     var matches: [Match]
+    
+    @EnvironmentObject
+    var globalConfig: GlobalConfiguration
     
     var body: some View {
         
@@ -32,6 +59,9 @@ struct MainMenuMatchList: View {
         if matches.count == 0 {
             VStack {
                 Spacer()
+                if !globalConfig.onlineAvailable {
+                    ErrorMessage("Online matches are unavailable")
+                }
                 Text("No matches have been created")
                 Spacer()
             }

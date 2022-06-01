@@ -11,13 +11,45 @@ import GameKit
 enum AppState {
     case unknown
     case menu
-    case creatingMatch
+    case creatingMatch(local: Bool)
     case game(match: Match)
+    
+    static let creatingLocalMatch = AppState.creatingMatch(local: true)
+    static let creatingOnlineMatch = AppState.creatingMatch(local: false)
+}
+
+enum AppStorageKey: String {
+    case localMatches
+}
+
+extension Set: RawRepresentable where Element == LocalMatch {
+    public init?(rawValue: String) {
+        let decoder = JSONDecoder()
+        guard let data = rawValue.data(using: .utf8) else {
+            return nil
+        }
+        guard let decoded = try? decoder.decode(Set<Element>.self, from: data) else {
+            return nil
+        }
+        
+        self = decoded
+    }
+    
+    public var rawValue: String {
+        let encoder = JSONEncoder()
+        let encoded = try! encoder.encode(self)
+        return String(data: encoded, encoding: .utf8)!
+    }
+    
+    public typealias RawValue = String
 }
 
 struct AppRoot : View {
     @State var state = AppState.menu
     @State var fatalError: Error? = nil
+    
+    @AppStorage(AppStorageKey.localMatches.rawValue)
+    var localMatches = Set<LocalMatch>()
     
     var body: some View {
         VStack {
@@ -39,12 +71,13 @@ struct AppRoot : View {
 #endif
         .environment(\.appState, $state)
         .environment(\.fatalErrorBinding, $fatalError)
+        .environmentObject(GlobalConfiguration())
     }
     
     @ViewBuilder
     var authenticatedInnerBody: some View {
         GKAuthentication_Internal {
-            MatchLoader {
+            MatchLoaderWithoutDataGuarantees {
                 unauthenticatedInnerBody
             }
         }
@@ -57,7 +90,13 @@ struct AppRoot : View {
             Text("Error, unknown game state.")
         case .menu:
             MainMenu()
-        case .creatingMatch:
+        case .creatingMatch(local: true):
+            PleaseWait("TODO: add customization options").task {
+                let newLocalMatch = LocalMatch(data: MatchData())
+                self.localMatches.insert(newLocalMatch)
+                state = .game(match: .local(newLocalMatch))
+            }
+        case .creatingMatch(local: false):
             GKTurnBasedMatchmakerView(
                                 minPlayers: 2,
                                 maxPlayers: 4,
@@ -66,8 +105,8 @@ struct AppRoot : View {
                 state = .menu
             } failed: { (error) in
                 fatalError = error
-            } started: { (match) in
-                print("Match Started")
+            } started: { (gkMatch) in
+                state = .game(match: .online(gkMatch, nil))
             }
         case .game(let match):
             Game()

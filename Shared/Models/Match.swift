@@ -12,7 +12,7 @@ enum MatchState: Codable {
     case uninitialized
 }
 
-struct MatchData: Codable, Identifiable {
+struct MatchData: Hashable, Equatable, Codable, Identifiable {
     let id: String
     
     static func loadData(_ data: Data) throws -> MatchData {
@@ -37,23 +37,22 @@ struct MatchData: Codable, Identifiable {
     }
 }
 
-struct LocalMatch: Identifiable, Codable {
+public struct LocalMatch: Hashable, Equatable, Identifiable, Codable {
     let data: MatchData
     
-    var id: String {
+    public var id: String {
         data.id
     }
 }
 
 enum Match: Identifiable {
+   
     case none   // uninitialized
     
     /// Local match
     case local(LocalMatch)
-    /// Partially loaded match
-    case partialOnline(GKTurnBasedMatch)
-    /// Fully loaded match
-    case online(GKTurnBasedMatch, MatchData)
+    /// Match that may be fully or partialy loaded
+    case online(GKTurnBasedMatch, MatchData?)
     
     var data: MatchData? {
         switch(self) {
@@ -61,8 +60,6 @@ enum Match: Identifiable {
             fatalError("Do not use .none")
         case .local(let m):
             return m.data
-        case .partialOnline(_):
-            return nil
         case .online(_, let data):
             return data
         }
@@ -74,7 +71,7 @@ enum Match: Identifiable {
             fatalError("Do not use .none")
         case .local(let match):
             return match.id
-        case .online(let match, _), .partialOnline(let match):
+        case .online(let match, _):
             return match.matchID
         }
     }

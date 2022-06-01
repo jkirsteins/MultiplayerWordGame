@@ -15,16 +15,40 @@ struct MatchThumbnail: View {
     @Environment(\.currentMatch)
     var match: Match
     
+    var isLocal: Bool {
+        if case .local(_) = match {
+            return true
+        }
+        return false
+    }
+    
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 5).fill(.gray)
-            Text(match.id)
-        }
-            .aspectRatio(1, contentMode: .fit)
-            .frame(minWidth: 150, minHeight: 150)
-            .frame(maxWidth: 200)
-            .onTapGesture {
-                appState.wrappedValue = .game(match: match)
+            VStack {
+                HStack {
+                    Spacer()
+                    if isLocal {
+                        Text("Local")
+                    } else {
+                        Text("Remote")
+                    }
+                    Spacer()
+                }
+                .padding()
+                .background(Rectangle().fill(.yellow))
+                
+                Spacer()
+                Text(match.id)
+                Spacer()
             }
+        }
+        .background(.gray)
+        .clipShape(RoundedRectangle(cornerRadius: 5))
+        .aspectRatio(1, contentMode: .fit)
+        .frame(minWidth: 150, minHeight: 150)
+        .frame(maxWidth: 200)
+        .onTapGesture {
+            appState.wrappedValue = .game(match: match)
+        }
     }
 }

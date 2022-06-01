@@ -6,9 +6,20 @@
 //
 
 import SwiftUI
+import Combine
 import GameKit
 
-enum GKAuthState {
+enum GKAuthState: Equatable {
+    static func == (lhs: GKAuthState, rhs: GKAuthState) -> Bool {
+        switch(lhs, rhs) {
+        case (.signingIn, .signingIn): return true
+        case (.signedIn, .signedIn): return true
+        case (.signedOut, .signedOut): return true
+        default:
+            return false
+        }
+    }
+    
     case signingIn
     case signedIn
     case signedOut
@@ -18,6 +29,9 @@ enum GKAuthState {
 struct GKAuthentication_Internal<Content: View>: View {
     
     @State var state: GKAuthState = .signingIn
+    
+    @EnvironmentObject
+    var globalConfig: GlobalConfiguration
     
     let localPlayer = GKLocalPlayer.local
     
@@ -55,14 +69,13 @@ struct GKAuthentication_Internal<Content: View>: View {
         Group {
             switch(state) {
             case .signedIn:
+                // Allow hot seat and online
                 content
             case .signingIn:
                 PleaseWait("Signing in...")
             case .signedOut:
-                VStack {
-                    Text("Not logged in").font(.largeTitle)
-                    Text("This game requires GameKit. Please ensure you are logged in and then restart the game.")
-                }
+                // Allow hot seat
+                content
             case .failed(let error):
                 VStack {
                     Text("Login failed").font(.largeTitle)
@@ -70,6 +83,16 @@ struct GKAuthentication_Internal<Content: View>: View {
                         Text(locdesc).foregroundColor(.red)
                     }
                 }
+            }
+        }
+        .onChange(of: self.state) {
+            newState in
+            
+            switch(newState) {
+            case .signedIn:
+                globalConfig.onlineAvailable = true
+            default:
+                globalConfig.onlineAvailable = false
             }
         }
         .padding()

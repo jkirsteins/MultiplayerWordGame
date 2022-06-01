@@ -27,7 +27,7 @@ struct GamePlayerListPlayer: View {
     
     var isCurrent: Bool {
         false
-//        match.currentParticipant == participant
+        //        match.currentParticipant == participant
     }
     
     var isLocal: Bool {
@@ -48,56 +48,74 @@ struct GamePlayerList: View {
         VStack {
             Text("Players").font(.title)
             Divider()
-//            ForEach(match.participants) {
-//                part in
-//
-//                GamePlayerListPlayer(participant: part)
-//            }
+            //            ForEach(match.participants) {
+            //                part in
+            //
+            //                GamePlayerListPlayer(participant: part)
+            //            }
         }
         .padding()
         .border(.primary)
     }
 }
 
-struct PartialOnlineLoader: View {
+struct FullMatchView: View {
+    var body: some View {
+        Text("full match")
+    }
+}
+
+/// Requires a `currentMatch` in environment,
+/// and will load its full data before invoking the child views.
+struct MatchDataLoader<Content: View>: View {
+    
+    @ViewBuilder var content: ()->Content
     
     enum _Error: Error {
         case noDataFound
     }
     
+    /// Outer match is set by the environment which might not know
+    /// how to properly initialize it. We take it as a starting point, but we don't
+    /// propogate it/use it further (see `actualMatch`)
     @Environment(\.currentMatch)
     var outerMatch: Match
     
     @Environment(\.fatalErrorBinding)
     var fatalError: Binding<Error?>
     
-    @State var fullyLoaded: Match? = nil
+    @State var actualMatch: Match? = nil
     
     var body: some View {
-        switch(outerMatch) {
-        case .partialOnline(let partial):
-            if let fullyLoaded = fullyLoaded {
-                Text("Fully loaded :-)")
-            } else {
-                PleaseWait("Loading match \(outerMatch.id)...")
-                    .task {
-                        do {
-                            guard
-                                let data = try await partial.loadMatchData()
-                            else {
-                                fatalError.wrappedValue = _Error.noDataFound
-                                return
-                            }
-                            
-                            let matchData = try MatchData(data)
-                            fullyLoaded = .online(partial, matchData)
-                        } catch {
-                            fatalError.wrappedValue = error
+        switch(actualMatch, outerMatch) {
+        case (_, .online(_, let md)) where md != nil:
+            // Match didn't need loading so no changes to environment
+            content()
+        case (.online(_, let md), _) where md != nil:
+            // Match loaded, so we need to prioritize over outerMatch
+            content()
+                .environment(\.currentMatch, actualMatch!)
+        case (nil, .online(let partial, let md)) where md == nil:
+            PleaseWait("Loading match \(outerMatch.id)...")
+                .task {
+                    do {
+                        guard
+                            let data = try await partial.loadMatchData()
+                        else {
+                            fatalError.wrappedValue = _Error.noDataFound
+                            return
                         }
+                        
+                        let matchData = try MatchData(data)
+                        actualMatch = .online(partial, matchData)
+                    } catch {
+                        fatalError.wrappedValue = error
                     }
-            }
+                }
         default:
-            Game()
+            Text("Unexpected state").task {
+                print("Match", String(describing: actualMatch))
+            }
         }
     }
 }
@@ -110,15 +128,19 @@ struct Game: View {
         switch(match) {
         case .none:
             fatalError()
-        case .local(_), .online(_, _):
-            Game()
-        case .partialOnline(_):
-            PartialOnlineLoader()
+        case .local(_):
+            ActiveMatch()
+                .environmentObject(TurnManagerWrapper(LocalTurnManager()))
+        case .online(_, _):
+            MatchDataLoader {
+                ActiveMatch()
+                    .environmentObject(TurnManagerWrapper(GameKitTurnManager()))
+            }
         }
     }
 }
 
-struct ActiveGame: View {
+struct ActiveMatch: View {
     @StateObject var state = GameState(15, 15)
     
     var cols: Int { state.cols }
@@ -128,6 +150,9 @@ struct ActiveGame: View {
     @State var scale: CGFloat = 1.0
     @State var isScaling = false
     @State var referenceScale: CGFloat = 1.0
+    
+    @EnvironmentObject
+    var turnManager: TurnManagerWrapper
     
     @Environment(\.currentMatch)
     var match: Match
@@ -149,8 +174,13 @@ struct ActiveGame: View {
     var body: some View {
         GeometryReader { pr in
             HStack {
-                
                 VStack {
+                    if turnManager.isLocal {
+                        Text("Hot Seat").font(.title)
+                    } else {
+                        Text("Online").font(.title)
+                    }
+                    Divider()
                     GamePlayerList()
                 }
                 .padding()
