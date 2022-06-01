@@ -51,6 +51,9 @@ struct AppRoot : View {
     @AppStorage(AppStorageKey.localMatches.rawValue)
     var localMatches = Set<LocalMatch>()
     
+    @StateObject
+    var globalConfig = GlobalConfiguration()
+    
     var body: some View {
         VStack {
             if let fatalError = fatalError {
@@ -71,7 +74,7 @@ struct AppRoot : View {
 #endif
         .environment(\.appState, $state)
         .environment(\.fatalErrorBinding, $fatalError)
-        .environmentObject(GlobalConfiguration())
+        .environmentObject(globalConfig)
     }
     
     @ViewBuilder
